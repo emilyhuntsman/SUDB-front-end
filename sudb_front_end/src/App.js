@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
+import Header from './components/Header.jsx'
+import Footer from './components/Footer.jsx'
+import StaffPicks from './components/StaffPicks.jsx'
 import SearchBar from './components/SearchBar.jsx';
-import NewForm from './NewForm.js'
+// import NewForm from './NewForm.js'
+
 
 const baseURL = 'http://localhost:3003';
 
@@ -52,22 +56,10 @@ class App extends Component {
     // don't know what to do about the error saying I can't nest a button under a tr
     return (
       <div className='container'>
-        <h1>Users</h1>
-        <table>
-          <tbody>
-          { this.state.users.map(user => {
-            return (
-              <tr key={user._id} >
-                  <td>{user.name}</td>
-                  <><button onClick={() => this.deleteUser(user._id)}>x</button></>
-              </tr>
-              )
-            })
-          }
-          </tbody>
-        </table>
-        <NewForm baseURL={baseURL} handleAddUser={this.handleAddUser}/>
+        <Header />
+        <StaffPicks />
         <SearchBar />
+        <Footer />
       </div>
     );
   }
