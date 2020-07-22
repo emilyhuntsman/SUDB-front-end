@@ -4,6 +4,7 @@ import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import StaffPicks from "./components/StaffPicks.jsx";
 import SearchBar from "./components/SearchBar.jsx";
+import Registration from "./components/Registration";
 // import NewForm from './NewForm.js'
 
 const baseURL = "http://localhost:3003";
@@ -22,7 +23,8 @@ class App extends Component {
     copyUsers.unshift(user);
     this.setState({
       users: copyUsers,
-      name: "",
+      username: "",
+      password: "",
       read: [],
       toRead: [],
       genres: [],
@@ -62,6 +64,7 @@ class App extends Component {
     // don't know what to do about the error saying I can't nest a button under a tr
     return (
       <div className="container">
+        <Registration />
         <Header />
         <StaffPicks />
         <SearchBar />

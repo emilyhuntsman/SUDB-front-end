@@ -17,29 +17,32 @@ export default class Registration extends Component {
     });
   };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   this.setState;
-  // };
-
-  // getUsers = () => {
-  //   fetch(baseURL + "/users")
-  //     .then(
-  //       (data) => {
-  //         return data.json();
-  //       },
-  //       (err) => console.log(err)
-  //     )
-  //     .then(
-  //       (parsedData) => this.setState({ users: parsedData }),
-  //       (err) => console.log(err)
-  //     );
-  // };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    fetch(this.props.baseURL + "/users", {
+      method: "POST",
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        this.setState({
+          username: "",
+          password: "",
+        });
+      })
+      .catch((error) => console.error({ Error: error }));
+  };
 
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={() => this.handleSubmit}>
           <label htmlFor="username">Username</label>
           <input type="text" id="username" />
           <br />
