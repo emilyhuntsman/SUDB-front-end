@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Header from './components/Header.jsx'
-import SearchBar from './components/SearchBar.jsx'
+//import SearchBar from './components/SearchBar.jsx'
 import Footer from './components/Footer.jsx'
 import StaffPicks from './components/StaffPicks.jsx'
 
@@ -56,7 +56,7 @@ class App extends Component {
       <div className='container'>
         <Header />
         <StaffPicks />
-        <SearchBar />
+        {/* <SearchBar /> */}
         <Footer />
       </div>
     );
