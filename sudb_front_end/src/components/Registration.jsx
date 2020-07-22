@@ -22,6 +22,20 @@ export default class Registration extends Component {
   //   this.setState;
   // };
 
+  // getUsers = () => {
+  //   fetch(baseURL + "/users")
+  //     .then(
+  //       (data) => {
+  //         return data.json();
+  //       },
+  //       (err) => console.log(err)
+  //     )
+  //     .then(
+  //       (parsedData) => this.setState({ users: parsedData }),
+  //       (err) => console.log(err)
+  //     );
+  // };
+
   render() {
     return (
       <div>
@@ -30,7 +44,9 @@ export default class Registration extends Component {
           <input type="text" id="username" />
           <br />
           <label htmlFor="password">Password</label>
-          <input type="text" id="password" />
+          <input type="password" id="password" />
+          <br />
+          <input type="submit" />
         </form>
       </div>
     );
