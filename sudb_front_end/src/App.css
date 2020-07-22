@@ -1,9 +1,48 @@
 .container {
   padding: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .bookSearch {
   width: 300px;
+}
+
+.footer {
+  padding-top: 50px;
+  font-size: 80%;
+  color: darkgray;
+}
+
+.footer a {
+  color: darkgrey;
+}
+
+.picks {
+  height: 400px;
+  width: 800px;
+  border: .01em solid black;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  padding-top: 50px;
+  font-size: 80%;
+  color: darkgray;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  border: .01em solid black;
+  margin-bottom: 20px;
 }
