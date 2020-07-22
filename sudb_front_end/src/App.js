@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import SearchBar from './SearchBar.jsx'
+import Header from './components/Header.jsx'
+import SearchBar from './components/SearchBar.jsx'
+import Footer from './components/Footer.jsx'
+import StaffPicks from './components/StaffPicks.jsx'
 
 const baseURL = 'http://localhost:3003';
 
@@ -51,7 +54,10 @@ class App extends Component {
     // don't know what to do about the error saying I can't nest a button under a tr
     return (
       <div className='container'>
+        <Header />
+        <StaffPicks />
         <SearchBar />
+        <Footer />
       </div>
     );
   }
