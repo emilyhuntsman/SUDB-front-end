@@ -57,7 +57,7 @@ class App extends Component {
     return (
       <div className='container'>
         <Header />
-        <StaffPicks />
+        <StaffPicks baseURL={baseURL}/>
         <SearchBar />
         <Footer />
       </div>

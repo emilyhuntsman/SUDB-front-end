@@ -48,6 +48,7 @@ export default class SearchBar extends Component {
                         value='Find a Book'
                     />
                     {/* Testing Purposes - Remove on Component Completion  */}
+                    <br />
                     <a href={this.state.searchURL}>JSON DATA</a>
                 </form>
                 {(this.state.book)
