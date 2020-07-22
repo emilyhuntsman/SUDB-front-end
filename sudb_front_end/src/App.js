@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import SearchBar from './components/SearchBar.jsx';
 import NewForm from './NewForm.js'
 
 const baseURL = 'http://localhost:3003';
@@ -66,6 +67,7 @@ class App extends Component {
           </tbody>
         </table>
         <NewForm baseURL={baseURL} handleAddUser={this.handleAddUser}/>
+        <SearchBar />
       </div>
     );
   }
