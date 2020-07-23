@@ -46,3 +46,9 @@
   border: .01em solid black;
   margin-bottom: 20px;
 }
+
+.bookInfo {
+  justify-content: center;
+  text-align: center;
+  list-style-type: none;
+}

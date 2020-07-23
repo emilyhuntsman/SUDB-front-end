@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import BookInfo from './BookInfo';
 
+const GOOGLE_API_KEY = process.env.REACT_APP_API_KEY_GOOGLE
+
 export default class SearchBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
             baseURL: 'https://www.googleapis.com/books/v1/volumes',
             query: '?q=', 
-            key: '&key=AIzaSyAMDjkRT8D0vaS2EHoiAfRu6-80lskahA8',
+            key: '&key=',
+            apiKey: GOOGLE_API_KEY,
             bookTitle: '',
             searchURL: '',
         }
+        console.log(this.state.key);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     };
@@ -20,7 +24,7 @@ export default class SearchBar extends Component {
     handleSubmit (event) {
         event.preventDefault()
         this.setState({
-            searchURL: this.state.baseURL + this.state.query + this.state.bookTitle + this.state.key
+            searchURL: this.state.baseURL + this.state.query + this.state.bookTitle + this.state.key + this.state.apiKey
         }, () => {
             fetch(this.state.searchURL)
             .then(response => {
@@ -50,8 +54,8 @@ export default class SearchBar extends Component {
                     {/* Testing Purposes - Remove on Component Completion  */}
                     <a href={this.state.searchURL}>JSON DATA</a>
                 </form>
-                {(this.state.book)
-                    && <BookInfo book={this.state.book} />
+                {(this.state.books)
+                    && <BookInfo books={this.state.books} />
                 }
             </>
         )
