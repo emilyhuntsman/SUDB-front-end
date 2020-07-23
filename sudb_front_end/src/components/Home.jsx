@@ -3,9 +3,10 @@ import StaffPicks from './StaffPicks.jsx'
 import SearchBar from './SearchBar.jsx';
 import { Redirect } from 'react-router-dom';
 
+
 class Home extends Component {
-    state = {
-    }
+  state = {};
+
 
     render() {
     if (this.props.redirect) {
@@ -19,6 +20,5 @@ class Home extends Component {
     )}
 
 }
-    
-export default Home;
 
+export default Home;

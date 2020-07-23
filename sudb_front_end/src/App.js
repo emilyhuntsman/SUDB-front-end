@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -6,7 +7,8 @@ import Footer from './components/Footer.jsx'
 import Home from './components/Home'
 import Show from './components/Show'
 import BlindDate from './components/BlindDate'
-
+import Registration from "./components/Registration";
+import NavMenu from "./components/NavMenu.jsx";
 
 const baseURL = "http://localhost:3003";
 
@@ -17,9 +19,10 @@ class App extends Component {
     bookSearch: '',
   }
 
+
   handleRedirect = () => {
     this.setState({ redirect: !this.state.redirect });
-  }
+  };
 
   handleSearch = (title) => {
     this.setState({ bookSearch: title, redirect: true, goTo: "book" })
@@ -27,9 +30,11 @@ class App extends Component {
 
   // for users in API post auth -----------------
 
+
   // componentDidMount(){
   //   this.getUsers();
   // }
+
 
   // handleAddUser = (user) => {
   //   const copyUsers = [...this.state.users];
@@ -58,6 +63,7 @@ class App extends Component {
   //     );
   // };
 
+
   // deleteUser = (id) => {
   //   fetch(baseURL + "/users/" + id, {
   //     method: "DELETE",
@@ -71,14 +77,21 @@ class App extends Component {
   //     .catch((error) => console.error({ Error: error }));
   // };
 
+
   // end of user section ----------------------
 
   render() {
     return (
       <div className="container">
-        <Header />
         <BrowserRouter>
+          <Header />
           <Switch>
+
+            <Route
+              exact
+              path="/users"
+              render={() => <Registration baseURL={baseURL} />}
+            />
             <Route exact path="/" 
             render={() => <Home redirect={this.state.redirect} baseURL={baseURL} handleSearch={(title) => this.handleSearch(title)} />}/>
             <Route exact path="/book/" render={() => <Show bookSearch={this.state.bookSearch}/>}/>
