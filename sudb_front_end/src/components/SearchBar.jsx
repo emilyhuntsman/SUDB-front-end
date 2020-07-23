@@ -2,22 +2,19 @@ import React, { Component } from 'react';
 import BookInfo from './BookInfo';
 
 export default class SearchBar extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            baseURL: 'https://www.googleapis.com/books/v1/volumes',
-            query: '?q=', 
-            key: '&key=AIzaSyAMDjkRT8D0vaS2EHoiAfRu6-80lskahA8',
-            bookTitle: '',
-            searchURL: '',
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    };
-    handleChange (event) {
+    state = {
+        baseURL: 'https://www.googleapis.com/books/v1/volumes',
+        query: '?q=', 
+        key: '&key=AIzaSyAMDjkRT8D0vaS2EHoiAfRu6-80lskahA8',
+        bookTitle: '',
+        searchURL: '',
+    }
+
+    handleChange = (event) => {
         this.setState({ [event.target.id]: event.target.value });
     };
-    handleSubmit (event) {
+
+    handleSubmit = (event) => {
         event.preventDefault()
         this.setState({
             searchURL: this.state.baseURL + this.state.query + this.state.bookTitle + this.state.key
@@ -32,6 +29,7 @@ export default class SearchBar extends Component {
             error => console.log(error))
         });
     };
+    
     render() {
         return (
             <>
