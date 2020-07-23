@@ -8,6 +8,7 @@ import SearchBar from './components/SearchBar.jsx';
 import Home from './components/Home'
 import Show from './components/Show'
 import Registration from "./components/Registration";
+import BlindDate from "./components/BlindDate";
 
 
 const baseURL = "http://localhost:3003";
@@ -82,6 +83,7 @@ class App extends Component {
             <Route exact path="/book/" render={() => <Show />}/>
           </Switch>
         </BrowserRouter>
+        <BlindDate />
         <Footer />
       </div>
     );

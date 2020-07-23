@@ -30,7 +30,7 @@ export default class SearchBar extends Component {
             .then(response => {
                 return response.json()
             }).then(json => this.setState({
-                books: json,
+                books: json.results,
                 bookTitle: ''
             }),
             error => console.log(error))
