@@ -26,7 +26,6 @@ class App extends Component {
 
   componentDidMount(){
     this.getUsers();
-    console.log(process.env.REACT_APP_API_KEY_GOOGLE);
   }
 
   handleAddUser = (user) => {
@@ -88,8 +87,7 @@ class App extends Component {
     );
   }
 }
-const GOOGLE_API_KEY = process.env.REACT_APP_API_KEY_GOOGLE
-console.log(GOOGLE_API_KEY);
+
 
 
 export default App;
