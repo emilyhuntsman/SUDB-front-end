@@ -14,14 +14,14 @@ export default class SearchBar extends Component {
             bookTitle: '',
             searchURL: '',
         }
-        console.log(this.state.key);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     };
     handleChange (event) {
         this.setState({ [event.target.id]: event.target.value });
     };
-    handleSubmit (event) {
+
+    handleSubmit = (event) => {
         event.preventDefault()
         this.setState({
             searchURL: this.state.baseURL + this.state.query + this.state.bookTitle + this.state.key + this.state.apiKey
@@ -36,6 +36,7 @@ export default class SearchBar extends Component {
             error => console.log(error))
         });
     };
+    
     render() {
         return (
             <>
@@ -52,6 +53,7 @@ export default class SearchBar extends Component {
                         value='Find a Book'
                     />
                     {/* Testing Purposes - Remove on Component Completion  */}
+                    <br />
                     <a href={this.state.searchURL}>JSON DATA</a>
                 </form>
                 {(this.state.books)
