@@ -8,6 +8,7 @@ import SearchBar from "./components/SearchBar.jsx";
 import Home from "./components/Home";
 import Show from "./components/Show";
 import Registration from "./components/Registration";
+import NavMenu from "./components/NavMenu.jsx";
 
 const baseURL = "http://localhost:3003";
 
@@ -74,10 +75,14 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Registration baseURL={baseURL} />
-        <Header />
         <BrowserRouter>
+          <Header />
           <Switch>
+            <Route
+              exact
+              path="/users"
+              render={() => <Registration baseURL={baseURL} />}
+            />
             <Route exact path="/" render={() => <Home baseURL={baseURL} />} />
             <Route exact path="/book/" render={() => <Show />} />
           </Switch>
