@@ -7,9 +7,10 @@ import StaffPicks from './components/StaffPicks.jsx'
 import SearchBar from './components/SearchBar.jsx';
 import Home from './components/Home'
 import Show from './components/Show'
+import Registration from "./components/Registration";
 
 
-const baseURL = 'http://localhost:3003';
+const baseURL = "http://localhost:3003";
 
 class App extends Component {
   state = {
@@ -29,43 +30,51 @@ class App extends Component {
   }
 
   handleAddUser = (user) => {
-    const copyUsers = [...this.state.users]
-    copyUsers.unshift(user)
+    const copyUsers = [...this.state.users];
+    copyUsers.unshift(user);
     this.setState({
       users: copyUsers,
-      name: '',
+      username: "",
+      password: "",
       read: [],
       toRead: [],
-      genres: []
-    })
-  }
+      genres: [],
+    });
+  };
 
   getUsers = () => {
-    fetch(baseURL+ '/users')
-    .then(data => {
-    return data.json()},
-    err => console.log(err))
-    .then(parsedData => this.setState({users: parsedData}),
-    err => console.log(err))
-  }
+    fetch(baseURL + "/users")
+      .then(
+        (data) => {
+          return data.json();
+        },
+        (err) => console.log(err)
+      )
+      .then(
+        (parsedData) => this.setState({ users: parsedData }),
+        (err) => console.log(err)
+      );
+  };
 
   deleteUser = (id) => {
-    fetch(baseURL + '/users/' + id, {
-      method: 'DELETE',
+    fetch(baseURL + "/users/" + id, {
+      method: "DELETE",
       body: JSON.stringify({}),
       headers: {
           'Content-Type': 'application/json'
       }
       }).then(() => {
         this.componentDidMount();
-    }).catch (error => console.error({'Error': error}))
-  }
+      })
+      .catch((error) => console.error({ Error: error }));
+  };
 
   // end of user section ----------------------
 
   render() {
     return (
-      <div className='container'>
+      <div className="container">
+        <Registration baseURL={baseURL} />
         <Header />
         <BrowserRouter>
           <Switch>
