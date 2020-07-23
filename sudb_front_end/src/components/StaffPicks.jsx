@@ -5,8 +5,7 @@ class StaffPicks extends Component {
         picks: []
     }
 
-    handleClick = (event) => {
-        console.log("inside...");
+    loadPicks = (event) => {
         fetch(this.props.baseURL + '/picks', {
             method: 'GET',
             headers: {
@@ -21,8 +20,15 @@ class StaffPicks extends Component {
     render () {
         return (
         <div className="picks">
-            {(this.state.picks.length != 0) ? <p>success</p> : <button onClick={() => this.handleClick()}>picks</button>
-            }
+            {this.loadPicks()}
+            {this.state.picks.map ((book, index) => {
+            return (
+            <div className="book" key={index}>
+                <img alt="" src={book.url} className="book-img"/>
+                <h5 className="hFive">{book.title}</h5>
+            </div>
+            )
+            })}
         </div>
         )
     }
