@@ -60,6 +60,12 @@
   margin-bottom: 20px;
 }
 
+
+.bookInfo {
+  justify-content: center;
+  text-align: center;
+  list-style-type: none;
+
 .book {
   flex: 0 0 auto;
 }
