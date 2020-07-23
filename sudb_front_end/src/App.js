@@ -1,18 +1,24 @@
 import React, {Component} from 'react';
 import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
-import StaffPicks from './components/StaffPicks.jsx'
-import SearchBar from './components/SearchBar.jsx';
-// import NewForm from './NewForm.js'
-
+import Home from './components/Home'
+import Show from './components/Show'
 
 const baseURL = 'http://localhost:3003';
 
 class App extends Component {
   state = {
-    users: []
+    users: [],
+    redirect: false,
   }
+
+  handleRedirect = () => {
+    this.setState({ redirect: !this.state.redirect });
+  }
+
+  // for users in API post auth -----------------
 
   componentDidMount(){
     this.getUsers();
@@ -47,18 +53,23 @@ class App extends Component {
           'Content-Type': 'application/json'
       }
       }).then(() => {
-        // not sure if this is the way you're supposed to do it but I was thinking of it as somewhat of a forced reload when one is deleted..
         this.componentDidMount();
     }).catch (error => console.error({'Error': error}))
   }
 
+  // end of user section ----------------------
+
   render() {
-    // don't know what to do about the error saying I can't nest a button under a tr
     return (
       <div className='container'>
         <Header />
-        <StaffPicks />
-        <SearchBar />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" 
+            render={() => <Home baseURL={baseURL}/>}/>
+            <Route exact path="/book/" render={() => <Show />}/>
+          </Switch>
+        </BrowserRouter>
         <Footer />
       </div>
     );
