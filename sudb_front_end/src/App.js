@@ -3,8 +3,6 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
-import StaffPicks from './components/StaffPicks.jsx'
-import SearchBar from './components/SearchBar.jsx';
 import Home from './components/Home'
 import Show from './components/Show'
 import Registration from "./components/Registration";
