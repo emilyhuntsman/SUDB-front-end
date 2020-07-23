@@ -5,6 +5,10 @@ class StaffPicks extends Component {
         picks: []
     }
 
+    componentDidMount(){
+        this.loadPicks();
+    }
+
     loadPicks = (event) => {
         fetch(this.props.baseURL + '/picks', {
             method: 'GET',
@@ -20,15 +24,15 @@ class StaffPicks extends Component {
     render () {
         return (
         <div className="picks">
-            {this.loadPicks()}
-            {this.state.picks.map ((book, index) => {
-            return (
-            <div className="book" key={index}>
-                <img alt="" src={book.url} className="book-img"/>
-                <h5 className="hFive">{book.title}</h5>
+            <h1>Staff Picks</h1>
+            <div className="book-display">
+                {this.state.picks.map ((book, index) => {
+                return (
+                <div className="book" key={index}>
+                    <img alt={book.name} src={book.url} className="book-img"/>
+                </div>
+                )})}
             </div>
-            )
-            })}
         </div>
         )
     }
