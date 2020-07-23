@@ -16,7 +16,7 @@ class Show extends Component {
     }
 
     componentDidMount(){
-        if(this.props.bookSearch != ""){
+        if(this.props.bookSearch !== ""){
             this.getBook();
         }
     }

@@ -6,6 +6,7 @@ import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './components/Home'
 import Show from './components/Show'
+import BlindDate from './components/BlindDate'
 import Registration from "./components/Registration";
 import NavMenu from "./components/NavMenu.jsx";
 
@@ -24,7 +25,7 @@ class App extends Component {
   };
 
   handleSearch = (title) => {
-    this.setState({ bookSearch: title, redirect: true })
+    this.setState({ bookSearch: title, redirect: true, goTo: "book" })
   }
 
   // for users in API post auth -----------------
@@ -94,6 +95,7 @@ class App extends Component {
             <Route exact path="/" 
             render={() => <Home redirect={this.state.redirect} baseURL={baseURL} handleSearch={(title) => this.handleSearch(title)} />}/>
             <Route exact path="/book/" render={() => <Show bookSearch={this.state.bookSearch}/>}/>
+            <Route exact path="/date/" render={() => <BlindDate />}/>
           </Switch>
         </BrowserRouter>
         <Footer />
