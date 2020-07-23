@@ -42,12 +42,22 @@ export default class Registration extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={() => this.handleSubmit}>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
           <label htmlFor="username">Username</label>
-          <input type="text" id="username" />
+          <input
+            type="text"
+            id="username"
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
           <br />
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
+          <input
+            type="password"
+            id="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
           <br />
           <input type="submit" />
         </form>

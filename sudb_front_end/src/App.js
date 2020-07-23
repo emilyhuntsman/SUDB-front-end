@@ -64,7 +64,7 @@ class App extends Component {
     // don't know what to do about the error saying I can't nest a button under a tr
     return (
       <div className="container">
-        <Registration />
+        <Registration baseURL={baseURL} />
         <Header />
         <StaffPicks />
         <SearchBar />
