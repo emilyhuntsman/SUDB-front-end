@@ -75,6 +75,28 @@
   padding: 7px;
 }
 
+.book-option {
+  display: flex;
+  margin: auto;
+  width: 275px;
+  height: 412px;
+  align-items: center;
+  padding: 40px;
+  margin-right: 10px;
+  text-align: center;
+  justify-content: center;
+  background-image: url("./bookcover.jpg");
+  background-size: cover;
+  background-repeat: none;
+  background-position: center;
+  color: #f2bf33;
+  border-radius: 20px;
+}
+.blind-date {
+  align-items: center;
+  text-align: center;
+}
+
 .show-container {
   margin-top: 10px;
   height: 500px;
