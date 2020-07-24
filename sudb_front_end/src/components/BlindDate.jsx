@@ -50,7 +50,7 @@ export default class BlindDate extends Component {
     };
     render() {
         return (
-            <div>
+            <div className ='blind-date'>
                 <h1>Blind Date with a Bestseller</h1>
                 <select value={this.state.listType}
                         onChange={(e) => this.setState({listType: e.target.value})}>
