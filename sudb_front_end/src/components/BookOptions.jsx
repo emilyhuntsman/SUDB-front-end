@@ -53,6 +53,7 @@ export default class BookOptions extends Component {
 
     render() {
         this.checkRandomEquality();
+        console.log(this.state.randomIndexOne, this.state.randomIndexTwo, this.state.randomIndexThree)
         return (
             <div className='dates'>
                 <div className='book-display'>
