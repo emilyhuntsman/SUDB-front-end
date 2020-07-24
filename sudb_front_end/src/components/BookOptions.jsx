@@ -4,10 +4,9 @@ export default class BookOptions extends Component {
     render() {
         return (
             <div>
-                <ul className='bookOptions'>
-                    {console.log(this.props.books)}
-                    <li>{this.props.books.results.books[0].title}</li>
-                </ul>
+                <div className='book'>
+                    <p>{this.props.books.results.books[Math.floor(Math.random() * (this.props.books.num_results - 1))].description}</p>
+                </div>
             </div>
         )
     }
