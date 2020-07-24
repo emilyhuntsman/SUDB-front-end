@@ -16,6 +16,7 @@ class Show extends Component {
     }
 
     componentDidMount(){
+        this.props.resetRedirect();
         if(this.props.bookSearch !== ""){
             this.getBook();
         }
@@ -37,9 +38,9 @@ class Show extends Component {
     }
 
     render() {
-    if (this.props.bookSearch === "") {
-        return <Redirect to='/' />
-    }
+    // if (this.props.bookSearch === "") {
+    //     return <Redirect to='/' />
+    // }
     return (
         <div className="show-container">
             <div className="cover">

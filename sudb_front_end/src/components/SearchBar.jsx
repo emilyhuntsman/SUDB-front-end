@@ -37,7 +37,6 @@ export default class SearchBar extends Component {
                         value='Find a Book'
                     />
                 </form>
-                <button onClick={this.props.toBlindDate()}>BlindDate</button>
             </>
         )
     }
