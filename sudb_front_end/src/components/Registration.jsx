@@ -18,6 +18,7 @@ export default class Registration extends Component {
   };
 
   handleSubmit = (event) => {
+    console.log("submit ran");
     event.preventDefault();
     fetch(this.props.baseURL + "/users", {
       method: "POST",
@@ -49,6 +50,7 @@ export default class Registration extends Component {
             id="username"
             value={this.state.username}
             onChange={this.handleChange}
+            ref={(node) => (this.username = node)}
           />
           <br />
           <label htmlFor="password">Password</label>
@@ -57,6 +59,7 @@ export default class Registration extends Component {
             id="password"
             value={this.state.password}
             onChange={this.handleChange}
+            ref={(node) => (this.password = node)}
           />
           <br />
           <input type="submit" />

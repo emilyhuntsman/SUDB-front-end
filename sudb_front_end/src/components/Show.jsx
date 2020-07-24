@@ -1,33 +1,58 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
+
+const GOOGLE_API_KEY = process.env.REACT_APP_API_KEY_GOOGLE;
 
 class Show extends Component {
+
     state = {
-        bookUrl: "https://www.googleapis.com/books/v1/volumes?q=A%20little%20life&key=AIzaSyAMDjkRT8D0vaS2EHoiAfRu6-80lskahA8",
-        bookObj: {}
+        baseURL: 'https://www.googleapis.com/books/v1/volumes',
+        query: '?q=', 
+        key: '&key=',
+        apiKey: GOOGLE_API_KEY,
+        bookTitle: this.props.bookSearch,
+        searchURL: '',
+        bookObj: {},
     }
 
     componentDidMount(){
-        this.getBook();
+        if(this.props.bookSearch !== ""){
+            this.getBook();
+        }
     }
 
     getBook = () => {
-        fetch(this.state.bookUrl).then(response => { return response.json() })
-        .then(json => this.setState({
-        bookObj: json.items[0].volumeInfo,
-        imgUrl: json.items[0].volumeInfo.imageLinks.thumbnail}),
-        error => console.log(error)).then(()=> console.log(this.state.imgUrl));
+        this.setState({
+            searchURL: this.state.baseURL + this.state.query + this.state.bookTitle + this.state.key + this.state.apiKey
+        }, () => {
+            fetch(this.state.searchURL)
+            .then(response => {
+                return response.json()
+            }).then(json => this.setState({
+                bookObj: json.items[0].volumeInfo,
+                imgUrl: json.items[0].volumeInfo.imageLinks.thumbnail
+            }),
+            error => console.log(error))
+        });
     }
 
     render() {
+    if (this.props.bookSearch === "") {
+        return <Redirect to='/' />
+    }
     return (
         <div className="show-container">
             <div className="cover">
                 <img alt="" src={this.state.imgUrl}/>
             </div>
             <div className="book-info">
+                <h2>{this.state.bookObj.title}</h2>
+                <h3>by {this.state.bookObj.authors}</h3>
                 <h4>{this.state.bookObj.categories} | {this.state.bookObj.pageCount} pages</h4>
-                <h4>average rating: {this.state.bookObj.averageRating}</h4>
-                <p>{this.state.bookObj.description}</p>
+                <h4>average of {this.state.bookObj.ratingsCount} ratings: {this.state.bookObj.averageRating}/5</h4>
+                <div className="book-description">
+                    <p>{this.state.bookObj.description}</p>
+                </div>
                 <div className="read-buttons">
                     <button>read</button>
                     <button>to read</button>

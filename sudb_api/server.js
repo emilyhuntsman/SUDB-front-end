@@ -3,6 +3,7 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const bodyParser = require("body-parser");
 const PORT = 3003;
 
 // middleware
@@ -10,7 +11,6 @@ const whitelist = ["http://localhost:3000"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
-      console.log("hi");
       callback(null, true);
     } else {
       console.log(origin);
@@ -19,6 +19,7 @@ const corsOptions = {
   },
 };
 app.use(cors(corsOptions));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // mongodb database connection
@@ -38,8 +39,8 @@ mongoose.connection.once("open", () => {
 const usersController = require("./controllers/users.js");
 app.use("/users", usersController);
 
-const picksController = require('./controllers/picks.js');
-app.use('/picks', picksController);
+const picksController = require("./controllers/picks.js");
+app.use("/picks", picksController);
 
 // listen
 app.listen(PORT, () => {
