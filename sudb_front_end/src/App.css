@@ -23,7 +23,6 @@
 .picks {
   height: 400px;
   width: 800px;
-  border: 0.01em solid black;
   margin-top: 20px;
   margin-bottom: 60px;
   display: flex;
@@ -56,7 +55,6 @@
   align-items: center;
   height: 50px;
   width: 100%;
-  border: 0.01em solid black;
   margin-bottom: 20px;
 }
 
@@ -128,18 +126,21 @@
   width: 300px;
 }
 
-.book-info h4, .medium-info h4 {
+.book-info h4,
+.medium-info h4 {
   margin: 5px;
   font-weight: 500;
 }
 
-.book-info h3, .medium-info h3 {
+.book-info h3,
+.medium-info h3 {
   margin-bottom: 10px;
   margin-top: 0px;
   font-weight: 650;
 }
 
-.book-info h2, .medium-info h2 {
+.book-info h2,
+.medium-info h2 {
   margin: 12px;
 }
 

@@ -1,15 +1,15 @@
-
-import React, {Component} from 'react';
-import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Header from './components/Header.jsx'
-import Footer from './components/Footer.jsx'
-import Home from './components/Home'
-import Show from './components/Show'
-import BlindDate from './components/BlindDate'
+import React, { Component } from "react";
+import "./App.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+import Home from "./components/Home";
+import Show from "./components/Show";
+import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
-// import NavMenu from "./components/NavMenu.jsx";
+import LogIn from "./components/LogIn";
 
+// import NavMenu from "./components/NavMenu.jsx";
 
 const baseURL = "http://localhost:3003";
 
@@ -17,25 +17,23 @@ class App extends Component {
   state = {
     users: [],
     redirect: false,
-    bookSearch: '',
-    goTo: '',
-  }
+    bookSearch: "",
+    goTo: "",
+  };
 
   handleSearch = (title) => {
-    this.setState({ bookSearch: title, redirect: true, goTo: "/book" })
-  }
+    this.setState({ bookSearch: title, redirect: true, goTo: "/book" });
+  };
 
   toBlindDate = () => {
-    this.setState({ redirect: true, goTo: "/date" })
-  }
+    this.setState({ redirect: true, goTo: "/date" });
+  };
 
   // for users in API post auth -----------------
-
 
   // componentDidMount(){
   //   this.getUsers();
   // }
-
 
   // handleAddUser = (user) => {
   //   const copyUsers = [...this.state.users];
@@ -64,7 +62,6 @@ class App extends Component {
   //     );
   // };
 
-
   // deleteUser = (id) => {
   //   fetch(baseURL + "/users/" + id, {
   //     method: "DELETE",
@@ -78,7 +75,6 @@ class App extends Component {
   //     .catch((error) => console.error({ Error: error }));
   // };
 
-
   // end of user section ----------------------
 
   render() {
@@ -88,13 +84,35 @@ class App extends Component {
           <Header />
           <Switch>
             <Route
-              exact path="/users"
+              exact
+              path="/users"
               render={() => <Registration baseURL={baseURL} />}
             />
-            <Route exact path="/" 
-            render={() => <Home redirect={this.state.redirect} goTo={this.state.goTo} baseURL={baseURL} handleSearch={(title) => this.handleSearch(title)} toBlindDate={() => this.toBlindDate} />}/>
-            <Route exact path="/book/" render={() => <Show bookSearch={this.state.bookSearch}/>}/>
-            <Route exact path="/date/" render={() => <BlindDate handleSearch={(title) => this.handleSearch(title)}/>}/>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Home
+                  redirect={this.state.redirect}
+                  goTo={this.state.goTo}
+                  baseURL={baseURL}
+                  handleSearch={(title) => this.handleSearch(title)}
+                  toBlindDate={() => this.toBlindDate}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/book"
+              render={() => <Show bookSearch={this.state.bookSearch} />}
+            />
+            <Route
+              exact
+              path="/date"
+              render={() => (
+                <BlindDate handleSearch={(title) => this.handleSearch(title)} />
+              )}
+            />
           </Switch>
         </BrowserRouter>
         <Footer />
