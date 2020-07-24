@@ -14,7 +14,8 @@ class Header extends Component {
         <span className="menuIcon" onClick={(event) => this.navOpen(event)}>
           &#9776;
         </span>
-        <img className="logo" src={Logo} />
+        <img className="logo" src={Logo} alt = "Logo"/>
+
         <NavMenu />
       </header>
     );

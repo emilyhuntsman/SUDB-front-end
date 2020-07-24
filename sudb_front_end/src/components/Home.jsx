@@ -5,17 +5,17 @@ import { Redirect } from 'react-router-dom';
 
 
 class Home extends Component {
-  state = {};
+    state = {};
 
 
     render() {
     if (this.props.redirect) {
-        return <Redirect to='/book'/>
+        return <Redirect to={this.props.goTo}/>
     }
     return (
         <>
             <StaffPicks baseURL={this.props.baseURL}/>
-            <SearchBar handleSearch={(title) => this.props.handleSearch(title)}/>
+            <SearchBar handleSearch={(title) => this.props.handleSearch(title)} toBlindDate={() => this.props.toBlindDate()}/>
         </>
     )}
 
