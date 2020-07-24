@@ -22,12 +22,26 @@ class App extends Component {
   };
 
   handleSearch = (title) => {
+<<<<<<< HEAD
     this.setState({ bookSearch: title, redirect: true, goTo: "/book" });
   };
 
   toBlindDate = () => {
     this.setState({ redirect: true, goTo: "/date" });
   };
+=======
+    console.log('nadling..')
+    this.setState({ bookSearch: title, redirect: true, goTo: "/book" })
+  }
+
+  resetRedirect = () => {
+    this.setState({redirect: !this.state.redirect, goTo: ''}) ;
+  }
+>>>>>>> ab8d479f4b6f434b449362ff1cfe56718176e86e
+
+  // toBlindDate = () => {
+  //   this.setState({ redirect: true, goTo: "/date" })
+  // }
 
   // for users in API post auth -----------------
 
@@ -88,6 +102,7 @@ class App extends Component {
               path="/users"
               render={() => <Registration baseURL={baseURL} />}
             />
+<<<<<<< HEAD
             <Route
               exact
               path="/"
@@ -113,6 +128,12 @@ class App extends Component {
                 <BlindDate handleSearch={(title) => this.handleSearch(title)} />
               )}
             />
+=======
+            <Route exact path="/" 
+            render={() => <Home redirect={this.state.redirect} goTo={this.state.goTo} baseURL={baseURL} handleSearch={(title) => this.handleSearch(title)} toBlindDate={() => this.toBlindDate} />}/>
+            <Route exact path="/book/" render={() => <Show bookSearch={this.state.bookSearch} resetRedirect={() => this.resetRedirect()}/>}/>
+            <Route exact path="/date/" render={() => <BlindDate handleSearch={(title) => this.handleSearch(title)} resetRedirect={() => this.resetRedirect()}/>}/>
+>>>>>>> ab8d479f4b6f434b449362ff1cfe56718176e86e
           </Switch>
         </BrowserRouter>
         <Footer />

@@ -17,6 +17,7 @@ export default class BlindDate extends Component {
     }
 
     componentDidMount() {
+        this.props.resetRedirect();
         fetch(this.state.baseURL + '/lists/names' + this.state.key + this.state.apiKey)
             .then(response => {
                 return response.json();
