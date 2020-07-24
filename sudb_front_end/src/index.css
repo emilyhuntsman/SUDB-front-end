@@ -58,7 +58,7 @@ code {
 .navCloseButton {
   position: absolute;
   left: 0px;
-  top: 0;
+  top: 6px;
   font-size: 30px;
 }
 .menuIcon {

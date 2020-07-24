@@ -4,7 +4,7 @@ import Logo from "./SUDb Logo.png";
 
 class Header extends Component {
   navOpen = (event) => {
-    document.getElementById("menuSideNav").style.width = "500px";
+    document.getElementById("menuSideNav").style.width = "550px";
     document.getElementById("menuSideNav").style.display = "navText";
   };
 
