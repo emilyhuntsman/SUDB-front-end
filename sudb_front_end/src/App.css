@@ -200,3 +200,10 @@
   background-color: #fff;
   margin: auto;
 }
+
+.navCloseButton {
+  background-color: transparent;
+  border: none;
+  color: darkgrey;
+  transform: translate(0px,4px);
+}
