@@ -67,9 +67,8 @@ export default class BlindDate extends Component {
                         value='Reveal Options'
                     />
                 </form>
-                <a href={this.state.searchURL}>JSON DATA</a>
                 {(this.state.books)
-                    && <BookOptions books={this.state.books} />}
+                    && <BookOptions books={this.state.books} handleSearch={(title) => this.props.handleSearch(title)} />}
             </div>
         )
     }

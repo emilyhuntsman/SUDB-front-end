@@ -21,11 +21,6 @@ class App extends Component {
     goTo: '',
   }
 
-
-  handleRedirect = () => {
-    this.setState({ redirect: !this.state.redirect });
-  };
-
   handleSearch = (title) => {
     this.setState({ bookSearch: title, redirect: true, goTo: "/book" })
   }
@@ -99,7 +94,7 @@ class App extends Component {
             <Route exact path="/" 
             render={() => <Home redirect={this.state.redirect} goTo={this.state.goTo} baseURL={baseURL} handleSearch={(title) => this.handleSearch(title)} toBlindDate={() => this.toBlindDate} />}/>
             <Route exact path="/book/" render={() => <Show bookSearch={this.state.bookSearch}/>}/>
-            <Route exact path="/date/" render={() => <BlindDate toBlindDate={() => this.toBlindDate}/>}/>
+            <Route exact path="/date/" render={() => <BlindDate handleSearch={(title) => this.handleSearch(title)}/>}/>
           </Switch>
         </BrowserRouter>
         <Footer />
