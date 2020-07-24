@@ -2,10 +2,20 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class NavMenu extends Component {
+  navClose = (event) => {
+    document.getElementById("menuSideNav").style.width = "0px";
+    document.getElementById("menuSideNav").style.display = "navText";
+  };
+
   render() {
     return (
-      <div className="sideNav">
-        <Link className="navCloseButton navLink">&times;</Link>
+      <div className="sideNav" id="menuSideNav">
+        <Link
+          className="navCloseButton navLink"
+          onClick={(event) => this.navClose(event)}
+        >
+          &times;
+        </Link>
         <Link className="navLink" to="/">
           Home
         </Link>

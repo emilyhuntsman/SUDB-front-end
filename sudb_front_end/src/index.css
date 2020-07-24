@@ -28,11 +28,11 @@ code {
   transition: 0.5s;
 }
 
-.sideNavClose {
-  border-radius: 15px 15px 15px 15px;
+#menuSideNav {
+  border-radius: 15px 1px 1px 15px;
   z-index: 1;
   top: 19px;
-  right: 38px;
+  right: 20px;
   overflow-x: hidden;
   display: flex;
   position: fixed;
