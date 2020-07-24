@@ -35,7 +35,7 @@ code {
   right: 20px;
   overflow-x: hidden;
   display: flex;
-  position: fixed;
+  position: absolute;
   justify-content: space-around;
   align-items: center;
   width: 0;
@@ -68,7 +68,6 @@ code {
   /* margin: 5% 3%; */
   font-size: 31px;
   color: black;
-  position: fixed;
   top: 1;
   right: 0;
 }
