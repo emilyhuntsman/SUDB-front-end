@@ -128,18 +128,18 @@
   width: 300px;
 }
 
-.book-info h4 {
+.book-info h4, .medium-info h4 {
   margin: 5px;
   font-weight: 500;
 }
 
-.book-info h3 {
+.book-info h3, .medium-info h3 {
   margin-bottom: 10px;
   margin-top: 0px;
   font-weight: 650;
 }
 
-.book-info h2 {
+.book-info h2, .medium-info h2 {
   margin: 12px;
 }
 
@@ -154,4 +154,37 @@
 
 .read-buttons button {
   margin: 4px;
+}
+
+.medium-info {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.medium-info img {
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.medium-buttons {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.inline-button {
+  display: inline-block;
+}
+
+.ReactModal__Content {
+  height: 450px;
+  width: 500px;
+  top: 211px !important;
+  background-color: #fff;
+  margin: auto;
 }
