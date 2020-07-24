@@ -10,6 +10,7 @@ import BlindDate from './components/BlindDate'
 import Registration from "./components/Registration";
 import NavMenu from "./components/NavMenu.jsx";
 
+
 const baseURL = "http://localhost:3003";
 
 class App extends Component {
@@ -98,6 +99,7 @@ class App extends Component {
             <Route exact path="/date/" render={() => <BlindDate />}/>
           </Switch>
         </BrowserRouter>
+        <BlindDate />
         <Footer />
       </div>
     );
