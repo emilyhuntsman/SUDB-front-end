@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Show from "./components/Show";
 import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
-import LogIn from "./components/LogIn";
+// import LogIn from "./components/LogIn";
 
 // import NavMenu from "./components/NavMenu.jsx";
 

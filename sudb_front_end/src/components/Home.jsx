@@ -14,7 +14,7 @@ class Home extends Component {
     }
     return (
         <>
-            <StaffPicks baseURL={this.props.baseURL}/>
+            <StaffPicks handleSearch={(title) => this.props.handleSearch(title)} baseURL={this.props.baseURL}/>
             <SearchBar handleSearch={(title) => this.props.handleSearch(title)} toBlindDate={() => this.props.toBlindDate()}/>
         </>
     )}
