@@ -8,7 +8,7 @@ import Home from './components/Home'
 import Show from './components/Show'
 import BlindDate from './components/BlindDate'
 import Registration from "./components/Registration";
-import NavMenu from "./components/NavMenu.jsx";
+// import NavMenu from "./components/NavMenu.jsx";
 
 
 const baseURL = "http://localhost:3003";
@@ -18,6 +18,7 @@ class App extends Component {
     users: [],
     redirect: false,
     bookSearch: '',
+    goTo: '',
   }
 
 
@@ -26,7 +27,11 @@ class App extends Component {
   };
 
   handleSearch = (title) => {
-    this.setState({ bookSearch: title, redirect: true, goTo: "book" })
+    this.setState({ bookSearch: title, redirect: true, goTo: "/book" })
+  }
+
+  toBlindDate = () => {
+    this.setState({ redirect: true, goTo: "/date" })
   }
 
   // for users in API post auth -----------------
@@ -87,19 +92,16 @@ class App extends Component {
         <BrowserRouter>
           <Header />
           <Switch>
-
             <Route
-              exact
-              path="/users"
+              exact path="/users"
               render={() => <Registration baseURL={baseURL} />}
             />
             <Route exact path="/" 
-            render={() => <Home redirect={this.state.redirect} baseURL={baseURL} handleSearch={(title) => this.handleSearch(title)} />}/>
+            render={() => <Home redirect={this.state.redirect} goTo={this.state.goTo} baseURL={baseURL} handleSearch={(title) => this.handleSearch(title)} toBlindDate={() => this.toBlindDate} />}/>
             <Route exact path="/book/" render={() => <Show bookSearch={this.state.bookSearch}/>}/>
-            <Route exact path="/date/" render={() => <BlindDate />}/>
+            <Route exact path="/date/" render={() => <BlindDate toBlindDate={() => this.toBlindDate}/>}/>
           </Switch>
         </BrowserRouter>
-        <BlindDate />
         <Footer />
       </div>
     );
