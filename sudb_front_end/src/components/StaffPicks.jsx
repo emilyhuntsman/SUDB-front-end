@@ -28,7 +28,7 @@ class StaffPicks extends Component {
             <div className="book-display">
                 {this.state.picks.map ((book, index) => {
                 return (
-                <div className="book" key={index}>
+                <div className="book" key={index} onClick={() => this.props.handleSearch(book.name)}>
                     <img alt={book.name} src={book.url} className="book-img"/>
                 </div>
                 )})}
