@@ -4,14 +4,23 @@ import { Link } from "react-router-dom";
 export default class NavMenu extends Component {
   render() {
     return (
-      <div className="navMenu">
-        <Link className="homeLink" to="/">
+      <div className="sideNav">
+        <Link className="navCloseButton navLink">&times;</Link>
+        <Link className="navLink" to="/">
           Home
         </Link>
-        <Link to="/about">About</Link>
-        <Link to="/date">Blind Date</Link>
-        <Link to="/list">My List</Link>
-        <Link to="/users">Log In</Link>
+        <Link className="navLink" to="/about">
+          About
+        </Link>
+        <Link className="navLink" to="/date">
+          Blind Date
+        </Link>
+        <Link className="navLink" to="/list">
+          My List
+        </Link>
+        <Link className="navLink" to="/users">
+          Log In
+        </Link>
       </div>
     );
   }
