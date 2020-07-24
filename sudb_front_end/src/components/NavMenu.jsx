@@ -10,12 +10,12 @@ export default class NavMenu extends Component {
   render() {
     return (
       <div className="sideNav" id="menuSideNav">
-        <Link
+        <button
           className="navCloseButton navLink"
           onClick={(event) => this.navClose(event)}
         >
           &times;
-        </Link>
+        </button>
         <Link className="navLink" to="/">
           Home
         </Link>
