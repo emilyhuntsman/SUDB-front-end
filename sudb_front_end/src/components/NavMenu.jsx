@@ -16,7 +16,7 @@ export default class NavMenu extends Component {
         >
           &times;
         </Link>
-        <Link className="navLink" to="/">
+        <Link className="navLink" to="">
           Home
         </Link>
         <Link className="navLink" to="/about">
