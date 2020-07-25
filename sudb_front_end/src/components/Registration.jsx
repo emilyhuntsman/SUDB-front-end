@@ -28,6 +28,7 @@ export default class Registration extends Component {
   render() {
     return (
       <div>
+        <h1>Sign Up</h1>
         <form onSubmit={(event) => this.handleSubmit(event)}>
           <label htmlFor="username">Username</label>
           <input
