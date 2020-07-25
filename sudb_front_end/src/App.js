@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Show from "./components/Show";
 import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
-import LogIn from "./components/LogIn";
+import Login from "./components/LogIn";
 
 // import NavMenu from "./components/NavMenu.jsx";
 
@@ -107,6 +107,18 @@ class App extends Component {
         <BrowserRouter>
           <Header />
           <Switch>
+            <Route
+              exact
+              path="/login"
+              render={() => (
+                <Login
+                  redirect={this.state.redirect}
+                  goTo={this.state.goTo}
+                  baseURL={baseURL}
+                  user={this.state.user}
+                />
+              )}
+            />
             <Route
               exact
               path="/users"

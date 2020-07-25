@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 
-export default class Registration extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      user: null,
       username: "",
       password: "",
       loginErrors: "",
@@ -17,10 +18,10 @@ export default class Registration extends Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleLogin = (event) => {
     console.log("submit ran");
     event.preventDefault();
-    fetch(this.props.baseURL + "/users", {
+    fetch(this.props.baseURL + "/login", {
       method: "POST",
       body: JSON.stringify({
         username: this.state.username,
@@ -33,6 +34,7 @@ export default class Registration extends Component {
       .then((res) => res.json())
       .then((resJson) => {
         this.setState({
+          user: resJson.username,
           username: "",
           password: "",
         });
@@ -64,6 +66,8 @@ export default class Registration extends Component {
           <br />
           <input type="submit" />
         </form>
+        <a href='/users'> Not Signed up? Click Here</a>
+
       </div>
     );
   }
