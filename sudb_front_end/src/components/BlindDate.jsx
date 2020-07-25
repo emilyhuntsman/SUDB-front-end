@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import BookOptions from './BookOptions'
 
-
 export default class BlindDate extends Component {
     constructor(props) {
         super(props)
@@ -30,8 +29,6 @@ export default class BlindDate extends Component {
                     listOptions: [{value: '', display: 'Select Bestseller List'}].concat(optionsFromApi)
                 });
             }).catch(err => console.log(err));
-                
-
     }
 
     handleSubmit = (event) => {
@@ -49,27 +46,30 @@ export default class BlindDate extends Component {
             error => console.log(error))
         });
     };
+
     render() {
         return (
             <div className ='blind-date'>
                 <h1>Blind Date with a Bestseller</h1>
-                <select value={this.state.listType}
-                        onChange={(e) => this.setState({listType: e.target.value})}>
-                        {this.state.listOptions.map(option => (
-                            <option
-                                key={option.value}
-                                value={option.value}>{option.display}
-                            </option>
-                        ))}
-                </select>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type='submit'
-                        value='Reveal Options'
-                    />
-                </form>
+                <div className="display-categories">
+                    <select value={this.state.listType}
+                            onChange={(e) => this.setState({listType: e.target.value})}>
+                            {this.state.listOptions.map(option => (
+                                <option
+                                    key={option.value}
+                                    value={option.value}>{option.display}
+                                </option>
+                            ))}
+                    </select>
+                    <form onSubmit={this.handleSubmit}>
+                        <input
+                            type='submit'
+                            value='Reveal Options'
+                        />
+                    </form>
+                </div>
                 {(this.state.books)
-                    && <BookOptions books={this.state.books} handleSearch={(title) => this.props.handleSearch(title)} />}
+                    && <BookOptions books={this.state.books} handleSearch={(title) => this.props.handleSearch(title)} toBlindDate={() => this.props.toBlindDate()}/>}
             </div>
         )
     }
