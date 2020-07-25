@@ -82,5 +82,7 @@ code {
 .logo {
   position: absolute;
   left: 0;
+  top: 0;
   margin-left: 15px;
+  transform: translate(0,-50px);
 }
