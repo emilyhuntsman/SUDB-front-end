@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
@@ -7,11 +7,14 @@ import Home from "./components/Home";
 import Show from "./components/Show";
 import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
+import Login from "./components/LogIn";
+
 
 const baseURL = "http://localhost:3003";
 
 class App extends Component {
   state = {
+    user: null,
     users: [],
     bookSearch: "",
     currentPage: "/",
@@ -25,9 +28,27 @@ class App extends Component {
     this.setState({ currentPage: '/' });
   };
 
+  handleSubmit = (event, username, password) => {
+    event.preventDefault();
+    console.log("submit ran");
+    fetch(baseURL + "/users", {
+      method: "POST",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error({ Error: error }));
+  };
+
   toBlindDate = () => {
     this.setState({ currentPage: "/date" })
   }
+
 
   // for users in API post auth -----------------
 
@@ -85,8 +106,26 @@ class App extends Component {
           <Switch>
             <Route
               exact
+              path="/login"
+              render={() => (
+                <Login
+                  redirect={this.state.redirect}
+                  goTo={this.state.goTo}
+                  baseURL={baseURL}
+                  user={this.state.user}
+                />
+              )}
+            />
+            <Route
+              exact
               path="/users"
-              render={() => <Registration baseURL={baseURL} />}
+              render={() => (
+                <Registration
+                  baseURL={baseURL}
+                  handleSubmit={this.handleSubmit}
+                  user={this.state.user}
+                />
+              )}
             />
             <Route
               exact

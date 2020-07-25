@@ -18,31 +18,17 @@ export default class Registration extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log("submit ran");
-    event.preventDefault();
-    fetch(this.props.baseURL + "/users", {
-      method: "POST",
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((resJson) => {
-        this.setState({
-          username: "",
-          password: "",
-        });
-      })
-      .catch((error) => console.error({ Error: error }));
+    this.props.handleSubmit(event, this.state.username, this.state.password);
+    this.setState({
+      username: "",
+      password: "",
+    });
   };
 
   render() {
     return (
       <div>
+        <h1>Sign Up</h1>
         <form onSubmit={(event) => this.handleSubmit(event)}>
           <label htmlFor="username">Username</label>
           <input
