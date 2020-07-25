@@ -7,32 +7,27 @@ import Home from "./components/Home";
 import Show from "./components/Show";
 import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
-// import LogIn from "./components/LogIn";
-
-// import NavMenu from "./components/NavMenu.jsx";
 
 const baseURL = "http://localhost:3003";
 
 class App extends Component {
   state = {
     users: [],
-    redirect: false,
     bookSearch: "",
-    goTo: "",
+    currentPage: "/",
   };
 
   handleSearch = (title) => {
-    console.log("nadling..");
-    this.setState({ bookSearch: title, redirect: true, goTo: "/book" });
+    this.setState({ bookSearch: title, currentPage: '/book'});
   };
 
   resetRedirect = () => {
-    this.setState({ redirect: !this.state.redirect, goTo: "" });
+    this.setState({ currentPage: '/' });
   };
 
-  // toBlindDate = () => {
-  //   this.setState({ redirect: true, goTo: "/date" })
-  // }
+  toBlindDate = () => {
+    this.setState({ currentPage: "/date" })
+  }
 
   // for users in API post auth -----------------
 
@@ -93,14 +88,12 @@ class App extends Component {
               path="/users"
               render={() => <Registration baseURL={baseURL} />}
             />
-
             <Route
               exact
               path="/"
               render={() => (
                 <Home
-                  redirect={this.state.redirect}
-                  goTo={this.state.goTo}
+                  currentPage={this.state.currentPage}
                   baseURL={baseURL}
                   handleSearch={(title) => this.handleSearch(title)}
                   toBlindDate={() => this.toBlindDate}
@@ -122,8 +115,9 @@ class App extends Component {
               path="/date/"
               render={() => (
                 <BlindDate
+                  currentPage={this.state.currentPage}
                   handleSearch={(title) => this.handleSearch(title)}
-                  resetRedirect={() => this.resetRedirect()}
+                  resetRedirect={() => this.resetRedirect()} toBlindDate={() => this.toBlindDate()}
                 />
               )}
             />

@@ -90,7 +90,10 @@
   color: #f2bf33;
   border-radius: 20px;
 }
+
 .blind-date {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
 }
@@ -189,14 +192,25 @@
   width: 40%;
 }
 
+.link-button {
+  text-decoration: none;
+  background-color: lightgray;
+  color: black;
+  padding: .25em .25em;
+  border: solid black 1px;
+  font-size: 15px;
+  border-radius: 2.5px;
+}
+
 .inline-button {
   display: inline-block;
 }
 
+
 .ReactModal__Content {
   height: 450px;
   width: 500px;
-  top: 211px !important;
+  top: 207px !important;
   background-color: #fff;
   margin: auto;
 }
@@ -206,4 +220,15 @@
   border: none;
   color: darkgrey;
   transform: translate(0px,4px);
+}
+
+.display-categories {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20px;
+}
+
+.display-categories select, .display-categories form {
+  margin-left: 6px;
+  margin-right: 6px;
 }

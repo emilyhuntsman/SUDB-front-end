@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactModal from 'react-modal'
+import { Link } from "react-router-dom";
 
 ReactModal.setAppElement('#root')
 
@@ -41,6 +42,11 @@ export default class BookOptions extends Component {
     closeModal = () => {
         this.setState({showModal: false});
     }
+
+    closeAndRedirect = () => {
+        this.setState({showModal: false});
+        this.props.toBlindDate();
+    }
     
     checkRandomEquality = () => {
         (this.state.randomIndexOne === this.state.randomIndexTwo || this.state.randomIndexTwo === this.state.randomIndexThree || this.state.randomIndexOne === this.state.randomIndexThree) && 
@@ -53,7 +59,6 @@ export default class BookOptions extends Component {
 
     render() {
         this.checkRandomEquality();
-        console.log(this.state.randomIndexOne, this.state.randomIndexTwo, this.state.randomIndexThree)
         return (
             <div className='dates'>
                 <div className='book-display'>
@@ -78,8 +83,8 @@ export default class BookOptions extends Component {
                             <h3>by {this.state.bookObj.authors}</h3>
                             <h4>{this.state.bookObj.categories}</h4>
                             <div className="medium-buttons">
-                                <button className="inline-botton">try again</button>
-                                <button className="inline-button" onClick={() => this.props.handleSearch(this.state.bookObj.title)}>view book page</button>
+                                <Link to="/date" className="link-button" onClick={() => window.location.reload()}>try again</Link>
+                                <Link to="/book" className="link-button" onClick={() => this.props.handleSearch(this.state.bookObj.title)}>view book page</Link>
                             </div>
                         </div>
                     </ReactModal>
