@@ -13,10 +13,9 @@ import LogIn from "./components/LogIn";
 
 const baseURL = "http://localhost:3003";
 
-const [isAuthenticated, userHasAuthenticated] = useState(false);
-
 class App extends Component {
   state = {
+    user: null,
     users: [],
     redirect: false,
     bookSearch: "",
@@ -30,6 +29,24 @@ class App extends Component {
 
   resetRedirect = () => {
     this.setState({ redirect: !this.state.redirect, goTo: "" });
+  };
+
+  handleSubmit = (event, username, password) => {
+    event.preventDefault();
+    console.log("submit ran");
+    fetch(baseURL + "/users", {
+      method: "POST",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+
+      .catch((error) => console.error({ Error: error }));
   };
 
   // toBlindDate = () => {
@@ -93,7 +110,13 @@ class App extends Component {
             <Route
               exact
               path="/users"
-              render={() => <Registration baseURL={baseURL} />}
+              render={() => (
+                <Registration
+                  baseURL={baseURL}
+                  handleSubmit={this.handleSubmit}
+                  user={this.state.user}
+                />
+              )}
             />
 
             <Route
