@@ -15,7 +15,7 @@ class Header extends Component {
           &#9776;
         </span>
         <img className="logo" src={Logo} alt = "Logo"/>
-
+        {/* add an a with href='/' around image, fix formatting.. */}
         <NavMenu />
       </header>
     );

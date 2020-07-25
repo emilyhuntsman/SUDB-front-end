@@ -83,7 +83,7 @@
   margin-right: 10px;
   text-align: center;
   justify-content: center;
-  background-image: url("./bookcover.jpg");
+  background-image: url("./components/bookcover.jpg");
   background-size: cover;
   background-repeat: none;
   background-position: center;
@@ -161,7 +161,7 @@
 }
 
 .bookSearch {
-  background-image: url("./googlebooks.png");
+  background-image: url("./components/googlebooks.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left center;
