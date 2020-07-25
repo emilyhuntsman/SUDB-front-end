@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
@@ -7,11 +7,13 @@ import Home from "./components/Home";
 import Show from "./components/Show";
 import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
-// import LogIn from "./components/LogIn";
+import LogIn from "./components/LogIn";
 
 // import NavMenu from "./components/NavMenu.jsx";
 
 const baseURL = "http://localhost:3003";
+
+const [isAuthenticated, userHasAuthenticated] = useState(false);
 
 class App extends Component {
   state = {
