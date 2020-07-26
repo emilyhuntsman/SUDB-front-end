@@ -8,7 +8,7 @@
 
 
 ## Approach
-This was a group project in which we first determined a common interest and landed on books! More specifically "Straight Up Dope Books" from here we created a wireframe, as seen in the image below:
+This was a group project in which we first determined a common interest and landed on books! More specifically "Straight Up Dope Books"! We then created a wireframe, as seen in the image below:
 ![wireframe](/public/wireframe.png)
 
 From here we broke down the different aspects of the website into different components on a shared Trello Board and assigned to the group members based on competency and comfort level with technologies needed for that component. Our Trello board looked like this:
