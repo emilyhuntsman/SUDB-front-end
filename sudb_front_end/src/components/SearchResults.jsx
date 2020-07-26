@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 export default class SearchResults extends Component {
     state = {
@@ -30,6 +30,9 @@ export default class SearchResults extends Component {
     }
 
     render() {
+        if(this.props.queryTerm === ""){
+            return <Redirect to="/" />
+        }
         return (
             <div className="results">
                 {this.state.results.map(result =>
