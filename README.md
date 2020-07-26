@@ -1,5 +1,5 @@
--> # SUDB (Straight Up Dope Books)
-### Created by Emily Huntsman, Ashton RK Seibel, and Ali Rizvi ~ 2020 ~ All Rights Reserved <-
+# SUDB (Straight Up Dope Books)
+### Created by Emily Huntsman, Ashton RK Seibel, and Ali Rizvi ~ 2020 ~ All Rights Reserved
 
 ## Hosted on Heroku at:
 (Insert Link Once Deployed)
