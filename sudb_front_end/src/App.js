@@ -9,7 +9,8 @@ import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
 import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
-import SearchResults from "./components/SearchResults"
+import SearchResults from "./components/SearchResults";
+import About from "./components/About";
 
 const baseURL = "http://localhost:3003";
 
@@ -253,6 +254,13 @@ class App extends Component {
                   pastBooks={this.state.pastBooks}
                   futureBooks={this.state.futureBooks} removeBookFuture={(book) => this.removeBookFuture(book)} removeBookPast={(book) => this.removeBookPast(book)} moveBookToFuture={(book) => this.moveBookToFuture(book)}
                 />
+              )}
+            />
+            <Route
+              exact
+              path="/about/"
+              render={() => (
+                <About />
               )}
             />
           </Switch>
