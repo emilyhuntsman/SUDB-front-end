@@ -24,7 +24,7 @@ class App extends Component {
   };
 
   handleSearch = (title) => {
-    this.setState({ bookSearch: title, currentPage: '/book'});
+    this.setState({ bookSearch: title, currentPage: '/book' });
   };
 
   resetRedirect = () => {
@@ -144,7 +144,8 @@ class App extends Component {
     return (
       <div className="container">
         <BrowserRouter>
-          <Header />
+          <Header
+            user={this.state.user} />
           <Switch>
             <Route
               exact

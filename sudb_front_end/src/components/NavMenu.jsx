@@ -25,12 +25,15 @@ export default class NavMenu extends Component {
         <Link className="navLink" to="/date">
           Blind Date
         </Link>
-        <Link className="navLink" to="/list">
-          My List
+        {
+          this.props.user
+            ? <Link className="navLink" to="/list">
+              My List
+            </Link>
+            : <Link className="navLink" to="/login">
+              Log In
         </Link>
-        <Link className="navLink" to="/users">
-          Log In
-        </Link>
+        }
       </div>
     );
   }

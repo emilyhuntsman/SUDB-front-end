@@ -48,6 +48,15 @@ users.put("/:id", (req, res) => {
   );
 });
 
+users.get("/login", (req, res) => {
+  console.log(req.body)
+  // User.find({}, (err, foundUser) => {
+  //   if (err) {
+  //     res.status(400).json({ error: err.message });
+  //   }
+  //   res.status(200).json(foundUser);
+  // });
+});
 // users.post("/createUser", chatCtrl.createNewUser);
 // users.post("/confirmUser", chatCtrl.authenticate);
 
