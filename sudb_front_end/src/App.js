@@ -24,7 +24,7 @@ class App extends Component {
   };
 
   handleSearch = (title) => {
-    this.setState({ bookSearch: title, currentPage: '/book'});
+    this.setState({ bookSearch: title, currentPage: '/book' });
   };
 
   resetRedirect = () => {
@@ -33,7 +33,7 @@ class App extends Component {
 
   handleSubmit = (event, username, password) => {
     event.preventDefault();
-    console.log("submit ran");
+    console.log("submit ran for sign up");
     fetch(baseURL + "/users", {
       method: "POST",
       body: JSON.stringify({
@@ -66,7 +66,7 @@ class App extends Component {
     if (index !== -1) {
       this.state.futureBooks.splice(index,1);
     }
-    this.setState({})
+    this.setState({});
   }
 
   addBookPast = (book) => {
@@ -89,6 +89,29 @@ class App extends Component {
   moveBookToFuture = (book) => {
     this.removeBookFuture(book);
     this.addBookPast(book);
+  }
+
+  handleLogin = (username, password) => {
+    let userString = `/${username}/${password}/`
+    fetch(baseURL + "/users/login" + userString, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        if (resJson !== null) {
+          this.setState({
+            user: resJson.username
+          });
+        }
+      })
+      .catch((error) => console.error({ Error: error }));
+  };
+
+  handleLogout = () => {
+    this.setState({ user: null });
   }
 
 
@@ -144,13 +167,16 @@ class App extends Component {
     return (
       <div className="container">
         <BrowserRouter>
-          <Header />
+          <Header
+            user={this.state.user}
+            handleLogout={() => this.handleLogout()} />
           <Switch>
             <Route
               exact
               path="/login"
               render={() => (
                 <Login
+                  handleLogin={(username,password) => this.handleLogin(username,password)}
                   redirect={this.state.redirect}
                   goTo={this.state.goTo}
                   baseURL={baseURL}
