@@ -5,8 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 
 class Home extends Component {
-    state = {};
-
+    
     render() {
     if (this.props.currentPage !== "/") {
         return <Redirect to={this.props.currentPage} />
