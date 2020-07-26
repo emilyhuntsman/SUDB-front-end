@@ -1,13 +1,88 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.sideNav {
+  border-radius: 15px 15px 15px 15px;
+  z-index: 1;
+  top: 19px;
+  right: 38px;
+  overflow-x: hidden;
+  display: flex;
+  position: fixed;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  height: 52px;
+  background-color: black;
+  transition: 0.5s;
+}
+
+#menuSideNav {
+  border-radius: 15px 1px 1px 15px;
+  z-index: 1;
+  top: 19px;
+  right: 20px;
+  overflow-x: hidden;
+  display: flex;
+  position: absolute;
+  justify-content: space-around;
+  align-items: center;
+  width: 0;
+  height: 52px;
+  background-color: black;
+  transition: 0.5s;
+}
+
+.sideNav a {
+  color: gray;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+}
+
+.sideNav a:hover {
+  color: white;
+}
+
+.navCloseButton {
+  position: absolute;
+  left: 0px;
+  top: 6px;
+  font-size: 30px;
+}
+.menuIcon {
+  position: absolute;
+  right: 0;
+  margin-right: 25px;
+  /* margin: 5% 3%; */
+  font-size: 31px;
+  color: black;
+  top: 1;
+  right: 0;
+}
+
+.menuIcon,
+.navCloseButton:hover {
+  cursor: pointer;
+}
+
+/* Logo */
+
+.logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: 15px;
+  transform: translate(0,-50px);
 }
