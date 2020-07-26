@@ -66,7 +66,7 @@ class App extends Component {
     if (index !== -1) {
       this.state.futureBooks.splice(index,1);
     }
-    this.setState({})
+    this.setState({});
   }
 
   addBookPast = (book) => {

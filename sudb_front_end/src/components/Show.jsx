@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
 
 const GOOGLE_API_KEY = process.env.REACT_APP_API_KEY_GOOGLE;
 
@@ -37,6 +38,9 @@ class Show extends Component {
     }
 
     render() {
+    if(this.props.bookSearch === ""){
+        return <Redirect to="/" />
+    }
     return (
         <div className="show-container">
             <div className="cover">
