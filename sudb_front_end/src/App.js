@@ -56,8 +56,39 @@ class App extends Component {
     this.state.futureBooks.push(book);
   }
 
+  removeBookFuture = (book) => {
+    let index = -1;
+    for (let i = 0; i < this.state.futureBooks.length; i++) {
+      if (book === this.state.futureBooks[i]) {
+        index = i;
+      }
+    }
+    if (index !== -1) {
+      this.state.futureBooks.splice(index,1);
+    }
+    this.setState({})
+  }
+
   addBookPast = (book) => {
     this.state.pastBooks.push(book);
+  }
+
+  removeBookPast = (book) => {
+    let index = -1;
+    for (let i = 0; i < this.state.pastBooks.length; i++) {
+      if (book === this.state.pastBooks[i]) {
+        index = i;
+      }
+    }
+    if (index !== -1) {
+      this.state.pastBooks.splice(index,1);
+    }
+    this.setState({})
+  }
+
+  moveBookToFuture = (book) => {
+    this.removeBookFuture(book);
+    this.addBookPast(book);
   }
 
 
@@ -177,7 +208,7 @@ class App extends Component {
               render={() => (
                 <MyLists
                   pastBooks={this.state.pastBooks}
-                  futureBooks={this.state.futureBooks} 
+                  futureBooks={this.state.futureBooks} removeBookFuture={(book) => this.removeBookFuture(book)} removeBookPast={(book) => this.removeBookPast(book)} moveBookToFuture={(book) => this.moveBookToFuture(book)}
                 />
               )}
             />
