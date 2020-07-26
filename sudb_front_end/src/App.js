@@ -93,7 +93,6 @@ class App extends Component {
 
   handleLogin = (username, password) => {
     let userString = `/${username}/${password}/`
-    console.log(userString);
     fetch(baseURL + "/users/login" + userString, {
       method: "GET",
       headers: {
@@ -102,13 +101,18 @@ class App extends Component {
     })
       .then((res) => res.json())
       .then((resJson) => {
-        console.log(resJson)
-        this.setState({
-          user: resJson.username
-        });
+        if (resJson !== null) {
+          this.setState({
+            user: resJson.username
+          });
+        }
       })
       .catch((error) => console.error({ Error: error }));
   };
+
+  handleLogout = () => {
+    this.setState({ user: null });
+  }
 
 
   // for users in API post auth -----------------
@@ -164,7 +168,8 @@ class App extends Component {
       <div className="container">
         <BrowserRouter>
           <Header
-            user={this.state.user} />
+            user={this.state.user}
+            handleLogout={() => this.handleLogout()} />
           <Switch>
             <Route
               exact

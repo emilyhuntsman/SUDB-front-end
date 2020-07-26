@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class NavMenu extends Component {
+  
   navClose = (event) => {
     document.getElementById("menuSideNav").style.width = "0px";
     document.getElementById("menuSideNav").style.display = "navText";
@@ -27,9 +28,10 @@ export default class NavMenu extends Component {
         </Link>
         {
           this.props.user
-            ? <Link className="navLink" to="/list">
-              My List
-            </Link>
+            ? <>
+                <Link className="navLink" to="/list">My List</Link>
+                <Link className="navLink" to="/" onClick={() => this.props.handleLogout()}>Log Out</Link>
+              </>
             : <Link className="navLink" to="/login">
               Log In
         </Link>

@@ -16,6 +16,7 @@ class Header extends Component {
         </span>
         <a href='/'><img className="logo" src={Logo} alt="Logo" /></a>
         <NavMenu
+          handleLogout={() => this.props.handleLogout()}
           user={this.props.user}
         />
       </header>
