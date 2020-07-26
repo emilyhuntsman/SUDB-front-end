@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 
 export default class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      user: null,
+    state = {
       username: "",
       password: "",
       loginErrors: "",
     };
-  }
 
   handleChange = (event) => {
     this.setState({
@@ -18,35 +13,20 @@ export default class Login extends Component {
     });
   };
 
-  handleLogin = (event) => {
-    console.log("submit ran");
+  reactToLogin = (event) => {
     event.preventDefault();
-    fetch(this.props.baseURL + "/users/login", {
-      method: "GET",
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((resJson) => {
-        this.setState({
-          user: resJson.username,
-          username: "",
-          password: "",
-        });
-      })
-      .catch((error) => console.error({ Error: error }));
-  };
+    this.props.handleLogin(this.state.username,this.state.password);
+    this.setState({
+      username: "",
+      password: "",
+    });
+  }
 
   render() {
     return (
       <div>
         <h1>Log In</h1>
-        <form onSubmit={(event) => this.handleLogin(event)}>
+        <form onSubmit={(event) => this.reactToLogin(event)}>
           <label htmlFor="username">Username</label>
           <input
             type="text"

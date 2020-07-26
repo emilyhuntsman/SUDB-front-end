@@ -33,7 +33,7 @@ class App extends Component {
 
   handleSubmit = (event, username, password) => {
     event.preventDefault();
-    console.log("submit ran");
+    console.log("submit ran for sign up");
     fetch(baseURL + "/users", {
       method: "POST",
       body: JSON.stringify({
@@ -90,6 +90,25 @@ class App extends Component {
     this.removeBookFuture(book);
     this.addBookPast(book);
   }
+
+  handleLogin = (username, password) => {
+    let userString = `/${username}/${password}/`
+    console.log(userString);
+    fetch(baseURL + "/users/login" + userString, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((resJson) => {
+        console.log(resJson)
+        this.setState({
+          user: resJson.username
+        });
+      })
+      .catch((error) => console.error({ Error: error }));
+  };
 
 
   // for users in API post auth -----------------
@@ -152,6 +171,7 @@ class App extends Component {
               path="/login"
               render={() => (
                 <Login
+                  handleLogin={(username,password) => this.handleLogin(username,password)}
                   redirect={this.state.redirect}
                   goTo={this.state.goTo}
                   baseURL={baseURL}
