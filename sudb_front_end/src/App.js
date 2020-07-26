@@ -9,7 +9,7 @@ import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
 import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
-
+import SearchResults from "./components/SearchResults"
 
 const baseURL = "http://localhost:3003";
 
@@ -25,7 +25,12 @@ class App extends Component {
 
   handleSearch = (title) => {
     this.setState({ bookSearch: title, currentPage: '/book' });
+    console.log("Inside Search")
   };
+
+  handleResults = (title) => {
+    this.setState({ bookSearch: title, currentPage: '/results'})
+  }
 
   resetRedirect = () => {
     this.setState({ currentPage: '/' });
@@ -202,8 +207,20 @@ class App extends Component {
                 <Home
                   currentPage={this.state.currentPage}
                   baseURL={baseURL}
+                  handleResults={(title) => this.handleResults(title)}
                   handleSearch={(title) => this.handleSearch(title)}
                   toBlindDate={() => this.toBlindDate}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/results/"
+              render={() => (
+                <SearchResults
+                  queryTerm={this.state.bookSearch}
+                  resetRedirect={() => this.resetRedirect()}
+                  handleSearch={(title) => this.handleSearch(title)}
                 />
               )}
             />

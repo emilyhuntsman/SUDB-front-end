@@ -18,7 +18,8 @@ export default class SearchBar extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.handleSearch(this.state.bookTitle);
+        // this.props.handleSearch(this.state.bookTitle);
+        this.props.handleResults(this.state.bookTitle);
     };
     
     render() {
