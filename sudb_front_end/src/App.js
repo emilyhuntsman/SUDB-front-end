@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Show from "./components/Show";
 import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
+import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
 
 
@@ -18,6 +19,8 @@ class App extends Component {
     users: [],
     bookSearch: "",
     currentPage: "/",
+    futureBooks: [],
+    pastBooks: [],
   };
 
   handleSearch = (title) => {
@@ -47,6 +50,14 @@ class App extends Component {
 
   toBlindDate = () => {
     this.setState({ currentPage: "/date" })
+  }
+
+  addBookFuture = (book) => {
+    this.state.futureBooks.push(book);
+  }
+
+  addBookPast = (book) => {
+    this.state.pastBooks.push(book);
   }
 
 
@@ -145,7 +156,7 @@ class App extends Component {
               render={() => (
                 <Show
                   bookSearch={this.state.bookSearch}
-                  resetRedirect={() => this.resetRedirect()}
+                  resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)}
                 />
               )}
             />
@@ -157,6 +168,16 @@ class App extends Component {
                   currentPage={this.state.currentPage}
                   handleSearch={(title) => this.handleSearch(title)}
                   resetRedirect={() => this.resetRedirect()} toBlindDate={() => this.toBlindDate()}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/list/"
+              render={() => (
+                <MyLists
+                  pastBooks={this.state.pastBooks}
+                  futureBooks={this.state.futureBooks} 
                 />
               )}
             />

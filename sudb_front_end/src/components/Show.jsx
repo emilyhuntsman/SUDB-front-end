@@ -37,9 +37,6 @@ class Show extends Component {
     }
 
     render() {
-    // if (this.props.bookSearch === "") {
-    //     return <Redirect to='/' />
-    // }
     return (
         <div className="show-container">
             <div className="cover">
@@ -54,8 +51,8 @@ class Show extends Component {
                     <p>{this.state.bookObj.description}</p>
                 </div>
                 <div className="read-buttons">
-                    <button>read</button>
-                    <button>to read</button>
+                    <button onClick={() => this.props.addBookPast(this.state.bookObj.title)}>read</button>
+                    <button onClick={() => this.props.addBookFuture(this.state.bookObj.title)}>to read</button>
                 </div>
             </div>
         </div>
