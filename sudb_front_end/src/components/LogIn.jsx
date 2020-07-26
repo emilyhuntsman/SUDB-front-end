@@ -21,8 +21,8 @@ export default class Login extends Component {
   handleLogin = (event) => {
     console.log("submit ran");
     event.preventDefault();
-    fetch(this.props.baseURL + "/login", {
-      method: "POST",
+    fetch(this.props.baseURL + "/users/login", {
+      method: "GET",
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
@@ -46,7 +46,7 @@ export default class Login extends Component {
     return (
       <div>
         <h1>Log In</h1>
-        <form onSubmit={(event) => this.handleSubmit(event)}>
+        <form onSubmit={(event) => this.handleLogin(event)}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -67,7 +67,7 @@ export default class Login extends Component {
           <br />
           <input type="submit" />
         </form>
-        <a href='/users'> Not Signed up? Click Here</a>
+        <p> Not Signed up? <a href='/users'>Click Here</a></p>
 
       </div>
     );

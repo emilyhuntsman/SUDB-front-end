@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
@@ -21,7 +21,7 @@ class App extends Component {
   };
 
   handleSearch = (title) => {
-    this.setState({ bookSearch: title, currentPage: '/book'});
+    this.setState({ bookSearch: title, currentPage: '/book' });
   };
 
   resetRedirect = () => {
@@ -102,7 +102,8 @@ class App extends Component {
     return (
       <div className="container">
         <BrowserRouter>
-          <Header />
+          <Header
+            user={this.state.user} />
           <Switch>
             <Route
               exact
