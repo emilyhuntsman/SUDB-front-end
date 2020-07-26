@@ -14,8 +14,11 @@ class Header extends Component {
         <span className="menuIcon" onClick={(event) => this.navOpen(event)}>
           &#9776;
         </span>
-        <a href='/'><img className="logo" src={Logo} alt = "Logo"/></a>
-        <NavMenu />
+        <a href='/'><img className="logo" src={Logo} alt="Logo" /></a>
+        <NavMenu
+          handleLogout={() => this.props.handleLogout()}
+          user={this.props.user}
+        />
       </header>
     );
   }

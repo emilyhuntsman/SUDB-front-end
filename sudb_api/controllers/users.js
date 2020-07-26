@@ -48,6 +48,14 @@ users.put("/:id", (req, res) => {
   );
 });
 
+users.get("/login/:user/:pw", (req, res) => {
+  User.findOne({'username': req.params.user}, (err, foundUser) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.status(200).json(foundUser);
+  });
+});
 // users.post("/createUser", chatCtrl.createNewUser);
 // users.post("/confirmUser", chatCtrl.authenticate);
 
