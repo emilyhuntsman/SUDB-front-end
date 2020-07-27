@@ -4,7 +4,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
-const PORT = 3003;
+const PORT = process.env.PORT || 3003;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/'+ `sudb`;
 
 // middleware
 const whitelist = ["http://localhost:3000"];
@@ -23,9 +24,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // mongodb database connection
-mongoose.connect("mongodb://localhost:27017/sudb", {
+mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  useFindAndModify: false
 });
 mongoose.connection.on("error", (err) =>
   console.log(err.message + " is Mongod not running?")
