@@ -11,21 +11,17 @@ import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
 import SearchResults from "./components/SearchResults"
 
-const baseURL = "http://localhost:3003";
-
 class App extends Component {
   state = {
     user: null,
     users: [],
     bookSearch: "",
     currentPage: "/",
-    futureBooks: [],
-    pastBooks: [],
+    baseURL: "http://localhost:3003"
   };
 
   handleSearch = (title) => {
     this.setState({ bookSearch: title, currentPage: '/book' });
-    console.log("Inside Search")
   };
 
   handleResults = (title) => {
@@ -38,7 +34,7 @@ class App extends Component {
 
   handleSubmit = (event, username, password) => {
     event.preventDefault();
-    fetch(baseURL + "/users", {
+    fetch(this.state.baseURL + "/users", {
       method: "POST",
       body: JSON.stringify({
         username: username,
@@ -54,7 +50,7 @@ class App extends Component {
 
   addToList = (list,title) => {
     const paramString = `${this.state.user}/${list}/${title}`
-    fetch(baseURL + "/users/" + paramString, {
+    fetch(this.state.baseURL + "/users/" + paramString, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -68,48 +64,9 @@ class App extends Component {
     this.setState({ currentPage: "/date" })
   }
 
-  addBookFuture = (book) => {
-    this.state.futureBooks.push(book);
-  }
-
-  removeBookFuture = (book) => {
-    let index = -1;
-    for (let i = 0; i < this.state.futureBooks.length; i++) {
-      if (book === this.state.futureBooks[i]) {
-        index = i;
-      }
-    }
-    if (index !== -1) {
-      this.state.futureBooks.splice(index,1);
-    }
-    this.setState({});
-  }
-
-  addBookPast = (book) => {
-    this.state.pastBooks.push(book);
-  }
-
-  removeBookPast = (book) => {
-    let index = -1;
-    for (let i = 0; i < this.state.pastBooks.length; i++) {
-      if (book === this.state.pastBooks[i]) {
-        index = i;
-      }
-    }
-    if (index !== -1) {
-      this.state.pastBooks.splice(index,1);
-    }
-    this.setState({})
-  }
-
-  moveBookToFuture = (book) => {
-    this.removeBookFuture(book);
-    this.addBookPast(book);
-  }
-
   handleLogin = (username, password) => {
     let userString = `/${username}/${password}/`
-    fetch(baseURL + "/users/login" + userString, {
+    fetch(this.state.baseURL + "/users/login" + userString, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -131,54 +88,6 @@ class App extends Component {
   }
 
 
-  // for users in API post auth -----------------
-
-  // componentDidMount(){
-  //   this.getUsers();
-  // }
-
-  // handleAddUser = (user) => {
-  //   const copyUsers = [...this.state.users];
-  //   copyUsers.unshift(user);
-  //   this.setState({
-  //     users: copyUsers,
-  //     username: "",
-  //     password: "",
-  //     read: [],
-  //     toRead: [],
-  //     genres: [],
-  //   });
-  // };
-
-  // getUsers = () => {
-  //   fetch(baseURL + "/users")
-  //     .then(
-  //       (data) => {
-  //         return data.json();
-  //       },
-  //       (err) => console.log(err)
-  //     )
-  //     .then(
-  //       (parsedData) => this.setState({ users: parsedData }),
-  //       (err) => console.log(err)
-  //     );
-  // };
-
-  // deleteUser = (id) => {
-  //   fetch(baseURL + "/users/" + id, {
-  //     method: "DELETE",
-  //     body: JSON.stringify({}),
-  //     headers: {
-  //         'Content-Type': 'application/json'
-  //     }
-  //     }).then(() => {
-  //       this.componentDidMount();
-  //     })
-  //     .catch((error) => console.error({ Error: error }));
-  // };
-
-  // end of user section ----------------------
-
   render() {
     return (
       <div className="container">
@@ -195,7 +104,7 @@ class App extends Component {
                   handleLogin={(username,password) => this.handleLogin(username,password)}
                   redirect={this.state.redirect}
                   goTo={this.state.goTo}
-                  baseURL={baseURL}
+                  baseURL={this.state.baseURL}
                   user={this.state.user}
                 />
               )}
@@ -205,7 +114,7 @@ class App extends Component {
               path="/users"
               render={() => (
                 <Registration
-                  baseURL={baseURL}
+                  baseURL={this.state.baseURL}
                   handleSubmit={this.handleSubmit}
                   user={this.state.user}
                 />
@@ -217,7 +126,7 @@ class App extends Component {
               render={() => (
                 <Home
                   currentPage={this.state.currentPage}
-                  baseURL={baseURL}
+                  baseURL={this.state.baseURL}
                   handleResults={(title) => this.handleResults(title)}
                   handleSearch={(title) => this.handleSearch(title)}
                   toBlindDate={() => this.toBlindDate}
@@ -240,6 +149,7 @@ class App extends Component {
               path="/book/"
               render={() => (
                 <Show
+                  user={this.state.user}
                   bookSearch={this.state.bookSearch}
                   resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)} addToList={(user,title) => this.addToList(user,title)}
                 />
@@ -261,8 +171,10 @@ class App extends Component {
               path="/list/"
               render={() => (
                 <MyLists
-                  pastBooks={this.state.pastBooks}
-                  futureBooks={this.state.futureBooks} removeBookFuture={(book) => this.removeBookFuture(book)} removeBookPast={(book) => this.removeBookPast(book)} moveBookToFuture={(book) => this.moveBookToFuture(book)}
+                  user={this.state.user}
+                  baseURL={this.state.baseURL}
+                  addToList={(list,title) => this.addToList(list,title)}
+                  moveBookToFuture={(book) => this.moveBookToFuture(book)} getUserLists={() => this.getUserLists()}
                 />
               )}
             />

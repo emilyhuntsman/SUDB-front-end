@@ -29,7 +29,6 @@ users.get("/:user", (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
-    console.log(foundUser);
     res.status(200).json(foundUser);
   });
 });
@@ -72,7 +71,6 @@ users.put("/:user/:list/:title", (req, res) => {
         if (err) {
           res.status(400).json({ error: err.message });
         }
-        console.log(updatedUser);
         res.status(200).json(updatedUser);
       }
     );
@@ -82,7 +80,27 @@ users.put("/:user/:list/:title", (req, res) => {
       if (err) {
         res.status(400).json({ error: err.message });
       }
-      console.log(updatedUser);
+      res.status(200).json(updatedUser);
+    }
+  );
+  }
+});
+
+users.put("/remove/:user/:list/:title", (req, res) => {
+  if (req.params.list === "future") {
+    User.findOneAndUpdate({"username": req.params.user},{$pull: { toread : req.params.title}},{ new: true },(err, updatedUser) => {
+        if (err) {
+          res.status(400).json({ error: err.message });
+        }
+        res.status(200).json(updatedUser);
+      }
+    );
+  }
+  if (req.params.list === "past") {
+    User.findOneAndUpdate({"username": req.params.user},{$pull: { read : req.params.title}},{ new: true },(err, updatedUser) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+      }
       res.status(200).json(updatedUser);
     }
   );

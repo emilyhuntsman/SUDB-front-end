@@ -54,14 +54,19 @@ class Show extends Component {
                 <div className="book-description">
                     <p>{this.state.bookObj.description}</p>
                 </div>
+                {(this.props.user) ? 
                 <div className="read-buttons">
                     <button onClick={() => this.props.addToList("past",this.state.bookObj.title)}>read</button>
                     <button onClick={() => this.props.addToList("future",this.state.bookObj.title)}>to read</button>
-                </div>
+                </div> :
+                <p>log in to add to add to your lists!</p>}
+                {/* <div className="read-buttons">
+                    <button onClick={() => this.props.addToList("past",this.state.bookObj.title)}>read</button>
+                    <button onClick={() => this.props.addToList("future",this.state.bookObj.title)}>to read</button>
+                </div> */}
             </div>
         </div>
     )}
-
 }
     
 export default Show;
