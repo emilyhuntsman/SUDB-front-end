@@ -3,11 +3,14 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+//HMAC SHA256 synchronous sign in
+const jwt = require('jsonwebtoken')
+// let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 const bodyParser = require("body-parser");
 const PORT = 3003;
 
 // middleware
-const whitelist = ["http://localhost:3000"];
+const whitelist = ["http://localhost:3000", "http://localhost:3003/users/login"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {

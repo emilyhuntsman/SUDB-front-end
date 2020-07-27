@@ -1,28 +1,17 @@
 import React, { Component } from "react";
 
 export default class Login extends Component {
-    state = {
-      username: "",
-      password: "",
-      loginErrors: "",
-    };
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value,
-    });
+  state = {
+    loginErrors: "",
   };
 
   reactToLogin = (event) => {
     event.preventDefault();
-    this.props.handleLogin(this.state.username,this.state.password);
-    this.setState({
-      username: "",
-      password: "",
-    });
+    this.props.handleLogin(this.props.username, this.props.password);
   }
 
   render() {
+
     return (
       <div>
         <h1>Log In</h1>
@@ -31,8 +20,8 @@ export default class Login extends Component {
           <input
             type="text"
             id="username"
-            value={this.state.username}
-            onChange={this.handleChange}
+            value={this.props.username}
+            onChange={this.props.handleLoginChange}
             ref={(node) => (this.username = node)}
           />
           <br />
@@ -40,15 +29,14 @@ export default class Login extends Component {
           <input
             type="password"
             id="password"
-            value={this.state.password}
-            onChange={this.handleChange}
+            value={this.props.password}
+            onChange={this.props.handleLoginChange}
             ref={(node) => (this.password = node)}
           />
           <br />
-          <input type="submit" />
+          <input type="submit" href='/' />
         </form>
         <p> Not Signed up? <a href='/users'>Click Here</a></p>
-
       </div>
     );
   }

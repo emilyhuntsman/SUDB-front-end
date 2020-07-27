@@ -15,7 +15,10 @@ const baseURL = "http://localhost:3003";
 
 class App extends Component {
   state = {
+    auth: false,
     user: null,
+    username: '',
+    password: '',
     users: [],
     bookSearch: "",
     currentPage: "/",
@@ -64,7 +67,7 @@ class App extends Component {
       }
     }
     if (index !== -1) {
-      this.state.futureBooks.splice(index,1);
+      this.state.futureBooks.splice(index, 1);
     }
     this.setState({});
   }
@@ -81,7 +84,7 @@ class App extends Component {
       }
     }
     if (index !== -1) {
-      this.state.pastBooks.splice(index,1);
+      this.state.pastBooks.splice(index, 1);
     }
     this.setState({})
   }
@@ -91,23 +94,53 @@ class App extends Component {
     this.addBookPast(book);
   }
 
+  handleLoginChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value,
+    });
+  };
+
   handleLogin = (username, password) => {
-    let userString = `/${username}/${password}/`
-    fetch(baseURL + "/users/login" + userString, {
-      method: "GET",
+    console.log('Log in function ran', this.state)
+    fetch(baseURL + '/users/login', {
+      method: "POST",
+      body: JSON.stringify({
+        user: this.state.username,
+        password: this.state.password
+      }),
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .then((resJson) => {
-        if (resJson !== null) {
-          this.setState({
-            user: resJson.username
-          });
-        }
+      .then((res) => {
+        let resJson = res.json()
+        console.log(resJson)
+        // console.log('this is Username', resJson.username)
+        // console.log('this is Auth', resJson.auth)
+
+        // console.log('this is login', res)
+        // if (resJson !== null) {
+        //   this.setState({
+        //     user: resJson.username,
+        //     auth: resJson.auth
+        //     //creating token with JWT using data from the user. look up local storage and saving token to persist. 
+        //   });
+        // }
       })
+      // .then((resJson) => {
+      //   console.log(resJson)
+      //   if (resJson !== null) {
+      //     this.setState({
+      //       user: resJson.username,
+      //       //creating token with JWT using data from the user. look up local storage and saving token to persist. 
+      //     });
+      //   }
+      // })
       .catch((error) => console.error({ Error: error }));
+    this.setState({
+      username: "",
+      password: "",
+    });
   };
 
   handleLogout = () => {
@@ -176,11 +209,13 @@ class App extends Component {
               path="/login"
               render={() => (
                 <Login
-                  handleLogin={(username,password) => this.handleLogin(username,password)}
+                  handleLoginChange={this.handleLoginChange}
+                  handleLogin={(username, password) => this.handleLogin(username, password)}
                   redirect={this.state.redirect}
                   goTo={this.state.goTo}
                   baseURL={baseURL}
-                  user={this.state.user}
+                  username={this.state.username}
+                  password={this.state.password}
                 />
               )}
             />

@@ -73,6 +73,10 @@
   padding: 7px;
 }
 
+.book:hover {
+  cursor: pointer;
+}
+
 .book-option {
   display: flex;
   margin: auto;
