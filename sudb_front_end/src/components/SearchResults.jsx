@@ -36,7 +36,7 @@ export default class SearchResults extends Component {
         }
         return (
             <div className="results">
-                <h1>Search Results for:  "{this.props.queryTerm}"</h1>
+                <h1 className="res-title">Search Results for:  "{this.props.queryTerm}"</h1>
                 <img className="powered-by-google" src={Google}></img><br />
                 {this.state.results.map(result =>
                     <div>
