@@ -82,6 +82,7 @@ class App extends Component {
         }
       })
       .catch((error) => console.error({ Error: error }));
+    this.resetRedirect();
   };
 
   handleLogout = () => {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 
 export default class Login extends Component {
     state = {
@@ -23,6 +24,9 @@ export default class Login extends Component {
   }
 
   render() {
+    if (this.props.currentPage === "/") {
+      return <Redirect to={this.props.currentPage} />
+  ``}
     return (
       <div>
         <h1>Log In</h1>
