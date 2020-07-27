@@ -33,6 +33,7 @@ class StaffPicks extends Component {
                 </div>
                 )})}
             </div>
+            <h3 className="scroll">&lt;- Scroll over for more dope books! -&gt;</h3>
         </div>
         )
     }
