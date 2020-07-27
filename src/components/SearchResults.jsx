@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Google from './powered_by_google_on_white.png'
 
+const GOOGLE_API_KEY = process.env.REACT_APP_API_KEY_GOOGLE;
+
 export default class SearchResults extends Component {
     state = {
         baseURL: 'https://www.googleapis.com/books/v1/volumes',
         query: '?q=', 
         key: '&key=',
-        apiKey: process.env.REACT_APP_API_KEY_GOOGLE,
+        apiKey: GOOGLE_API_KEY,
         searchURL: '',
         results: [],
     }
