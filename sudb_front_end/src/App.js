@@ -38,13 +38,24 @@ class App extends Component {
 
   handleSubmit = (event, username, password) => {
     event.preventDefault();
-    console.log("submit ran for sign up");
     fetch(baseURL + "/users", {
       method: "POST",
       body: JSON.stringify({
         username: username,
         password: password,
       }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error({ Error: error }));
+  };
+
+  addToList = (list,title) => {
+    const paramString = `${this.state.user}/${list}/${title}`
+    fetch(baseURL + "/users/" + paramString, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -230,7 +241,7 @@ class App extends Component {
               render={() => (
                 <Show
                   bookSearch={this.state.bookSearch}
-                  resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)}
+                  resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)} addToList={(user,title) => this.addToList(user,title)}
                 />
               )}
             />

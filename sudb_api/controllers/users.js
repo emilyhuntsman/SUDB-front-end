@@ -7,7 +7,6 @@ users.use(bodyParser.urlencoded({ extended: true }));
 users.use(express.json());
 
 users.post("/", async (req, res) => {
-  console.log(req.body);
   User.create(req.body, (error, createdUser) => {
     if (error) {
       res.status(400).json({ error: error.message });
@@ -21,6 +20,16 @@ users.get("/", (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     }
+    res.status(200).json(foundUser);
+  });
+});
+
+users.get("/:user", (req, res) => {
+  User.find({"username": req.params.user}, (err, foundUser) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    console.log(foundUser);
     res.status(200).json(foundUser);
   });
 });
@@ -56,7 +65,28 @@ users.get("/login/:user/:pw", (req, res) => {
     res.status(200).json(foundUser);
   });
 });
-// users.post("/createUser", chatCtrl.createNewUser);
-// users.post("/confirmUser", chatCtrl.authenticate);
+
+users.put("/:user/:list/:title", (req, res) => {
+  if (req.params.list === "future") {
+    User.findOneAndUpdate({"username": req.params.user},{$push: { toread : req.params.title}},{ new: true },(err, updatedUser) => {
+        if (err) {
+          res.status(400).json({ error: err.message });
+        }
+        console.log(updatedUser);
+        res.status(200).json(updatedUser);
+      }
+    );
+  }
+  if (req.params.list === "past") {
+    User.findOneAndUpdate({"username": req.params.user},{$push: { read : req.params.title}},{ new: true },(err, updatedUser) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+      }
+      console.log(updatedUser);
+      res.status(200).json(updatedUser);
+    }
+  );
+  }
+});
 
 module.exports = users;

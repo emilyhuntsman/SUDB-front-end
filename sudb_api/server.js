@@ -27,6 +27,7 @@ app.use(express.json());
 mongoose.connect(MONGODB_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  useFindAndModify: false
 });
 mongoose.connection.on("error", (err) =>
   console.log(err.message + " is Mongod not running?")
