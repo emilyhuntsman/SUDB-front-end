@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import Google from './powered_by_google_on_white.png'
 
 export default class SearchResults extends Component {
     state = {
@@ -20,7 +21,7 @@ export default class SearchResults extends Component {
                 return response.json()
             }).then(results => {
                 let optionsFromApi = results.items.map(result =>{
-                    return {key:result.etag, title:result.volumeInfo.title, author:result.volumeInfo.authors, pages: result.volumeInfo.pageCount, img: result.volumeInfo.imageLinks.smallThumbnail }
+                    return {key:result.etag, title:result.volumeInfo.title, author:result.volumeInfo.authors, pages: result.volumeInfo.pageCount, img: result.volumeInfo.imageLinks.thumbnail }
                 });
                 this.setState({
                     results: [{key: '', title: '', author: '', pages: '', img: ''}].concat(optionsFromApi)
@@ -35,11 +36,24 @@ export default class SearchResults extends Component {
         }
         return (
             <div className="results">
+                <h1>Search Results for:  "{this.props.queryTerm}"</h1>
+                <img className="powered-by-google" src={Google}></img><br />
                 {this.state.results.map(result =>
-                    <Link key={result.key} to="/book" className="result">
-                        <img alt= {result.title} src={result.img} onClick= {() => this.props.handleSearch(result.title)}></img>
-                        {(result.title) && (<p>Title: {result.title} || Author(s): {result.author} || Page(s): {result.pages}</p>)}
-                    </Link>)}
+                    <div>
+                    {(result.title) && (
+                        <Link key={result.key} to="/book" className="result-link">
+                            <div className="result">
+                                <img className="result-img" alt= {result.title} src={result.img} onClick= {() => this.props.handleSearch(result.title)}></img>
+                                <div className="result-desc">
+                                    <span>Title: {result.title}</span><br/>
+                                    <span>Author(s): {result.author}</span><br/>
+                                    <span>Page(s): {result.pages}</span><br/>
+                                </div>
+                            </div>
+                        </Link>
+                    )}
+                    </div>
+                )}
             </div>
         )
     }

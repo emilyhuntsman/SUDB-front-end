@@ -26,7 +26,6 @@ class App extends Component {
 
   handleSearch = (title) => {
     this.setState({ bookSearch: title, currentPage: '/book' });
-    console.log("Inside Search")
   };
 
   handleResults = (title) => {

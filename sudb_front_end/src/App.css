@@ -259,3 +259,33 @@
   margin-bottom: 40px;
   width: 400px;
 }
+
+.result {
+  width: 900px;
+  height: 200px;
+  border: 1px solid black;
+  display: flex;
+  padding: 5px;
+  margin: 5px;
+}
+
+.result-img {
+  position: left;
+  text-align: left;
+  padding-right: 50px;
+}
+
+.result-desc {
+  position: right;
+  align-items: top right;
+  padding-top: 70px;
+  text-align: left;
+}
+
+.results {
+  text-align: center;
+}
+
+a:Link {
+  text-decoration: none;
+}
