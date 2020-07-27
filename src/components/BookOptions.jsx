@@ -75,10 +75,11 @@ export default class BookOptions extends Component {
                 <div className="modal-div">
                     <ReactModal
                         isOpen={this.state.showModal}
-                        contentLabel="Book Modal" centered> 
-                        <button onClick={() => this.closeModal()}>close</button>
+                        contentLabel="Book Modal" 
+                        centered> 
+                        <button onClick={() => this.closeModal()} className='close'>close</button>
                         <div className="medium-info">
-                            <img alt="" src={this.state.imgUrl}/>
+                            <img alt="" src={this.state.imgUrl} className="modal-img"/>
                             <h2>{this.state.bookObj.title}</h2>
                             <h3>by {this.state.bookObj.authors}</h3>
                             <h4>{this.state.bookObj.categories}</h4>
