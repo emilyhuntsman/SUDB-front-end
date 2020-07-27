@@ -17,7 +17,7 @@ let baseURL;
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003';
 } else {
-  baseURL = 'https://sudb-api.herokuapp.com/';
+  baseURL = 'https://sudb-api.herokuapp.com';
 }
 
 class App extends Component {
