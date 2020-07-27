@@ -24,8 +24,8 @@ export default class Login extends Component {
   }
 
   render() {
-    if (this.props.currentPath === "/") {
-      return <Redirect to={this.props.currentPath}/>
+    if (this.props.currentPage === "/") {
+      return <Redirect to={this.props.currentPage}/>
     }
     return (
       <div>
