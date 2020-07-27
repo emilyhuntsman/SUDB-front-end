@@ -12,6 +12,7 @@ export default class BlindDate extends Component {
             key: '.json?api-key=',
             apiKey: 'AvrhDA0S3I6hhszKEo8ljVKVDAPUGLAy',
             searchURL: '',
+            hideBar: false,
         }
     }
 
@@ -34,7 +35,8 @@ export default class BlindDate extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.setState({
-            searchURL: this.state.baseURL + this.state.listBase + this.state.listType + this.state.key + this.state.apiKey
+            searchURL: this.state.baseURL + this.state.listBase + this.state.listType + this.state.key + this.state.apiKey, 
+            hideBar: true
         }, () => {
             fetch(this.state.searchURL)
             .then(response => {
@@ -45,6 +47,7 @@ export default class BlindDate extends Component {
             }),
             error => console.log(error))
         });
+        
     };
 
     render() {

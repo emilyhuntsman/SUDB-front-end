@@ -1,4 +1,4 @@
-/* MOVED FROM INDEX.CSS */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap');
 
 body {
   margin: 0;
@@ -24,7 +24,7 @@ code {
   position: fixed;
   justify-content: space-around;
   align-items: center;
-  width: 50%;
+  width: 75%;
   height: 52px;
   background-color: black;
   transition: 0.5s;
@@ -79,8 +79,6 @@ code {
   cursor: pointer;
 }
 
-/* Logo */
-
 .logo {
   position: absolute;
   left: 0;
@@ -89,7 +87,6 @@ code {
   transform: translate(0,-50px);
 }
 
-/* END INDEX.CSS ADDITIONS */
 .container {
   padding: 20px;
   display: flex;
@@ -175,11 +172,9 @@ code {
   margin-right: 10px;
   text-align: center;
   justify-content: center;
-  background-image: url("./components/bookcover.jpg");
-  background-size: cover;
-  background-repeat: none;
-  background-position: center;
-  color: #f2bf33;
+  background-color: #157A6E;
+  border: 5px solid #77B28c; 
+  color: #292F36;
   border-radius: 20px;
 }
 
@@ -382,13 +377,6 @@ a:Link {
   text-decoration: none;
 }
 
-
-/* ASHTON EDITS */
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap');
-
-
-
 body {
   background-color: #D7D9D3
 }
@@ -461,15 +449,15 @@ body {
 .bookSearch {
   margin-bottom: 5px;
 }
-.bookSearch, .bookSearchButton, .bd-dropdown, .bd-button {
+.bookSearch, .bookSearchButton, .bd-dropdown, .bd-button, .read-buttons button, .close {
   margin-right: 10px;
-  padding: 2px;
+  padding: 5px;
   border: #77B28C solid;
   border-radius: 10px;
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
 }
-.result {
+.result, .show-container {
   border: 1px solid #77B28C;
   border-radius: 10px;
   display: flex;
@@ -501,3 +489,35 @@ body {
   align-items: center;
   text-align: center;
 }
+
+.show-container {
+  text-align: center;
+}
+
+.cover img, .modal-img {
+  border-radius: 10px;
+}
+
+.about-container, .ReactModal__Content, .ReactModal__Body--open, .medium-info
+{
+  border: 1px solid #77B28C;
+  border-radius: 10px;
+  background-color: #77B28C;
+  padding: 10px;
+  color: #D7D9D3;
+  font-family: 'Raleway', sans-serif;
+  font-size: 300;
+  text-align: center;
+  list-style-position: inside;
+}
+
+.about-img {
+  width: 600px;
+  border-radius: 10px;
+}
+
+.about-title, .about-container h2 {
+  text-decoration: underline;
+  color: #292F36
+}
+
