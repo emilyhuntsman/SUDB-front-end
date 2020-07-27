@@ -9,7 +9,8 @@ import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
 import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
-import SearchResults from "./components/SearchResults"
+import SearchResults from "./components/SearchResults";
+import About from "./components/About";
 
 class App extends Component {
   state = {
@@ -176,6 +177,13 @@ class App extends Component {
                   addToList={(list,title) => this.addToList(list,title)}
                   moveBookToFuture={(book) => this.moveBookToFuture(book)} getUserLists={() => this.getUserLists()}
                 />
+              )}
+            />
+            <Route
+              exact
+              path="/about/"
+              render={() => (
+                <About />
               )}
             />
           </Switch>
