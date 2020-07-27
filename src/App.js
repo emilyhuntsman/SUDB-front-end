@@ -112,7 +112,7 @@ class App extends Component {
                 <Login
                   handleLogin={(username,password) => this.handleLogin(username,password)}
                   redirect={this.state.redirect}
-                  goTo={this.state.goTo}
+                  currentPage={this.state.currentPage}
                   baseURL={this.state.baseURL}
                   user={this.state.user}
                 />
