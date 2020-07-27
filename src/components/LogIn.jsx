@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
     state = {
@@ -16,6 +16,7 @@ export default class Login extends Component {
 
   reactToLogin = (event) => {
     event.preventDefault();
+    this.props.resetRedirect();
     this.props.handleLogin(this.state.username,this.state.password);
     this.setState({
       username: "",
@@ -24,8 +25,8 @@ export default class Login extends Component {
   }
 
   render() {
-    if (this.props.currentPage === "/") {
-      return <Redirect to={this.props.currentPage}/>
+    if (this.props.currentPage !== '/login') {
+      return <Redirect to={this.props.currentPage} />
     }
     return (
       <div>
@@ -52,7 +53,6 @@ export default class Login extends Component {
           <input type="submit" />
         </form>
         <p> Not Signed up? <a href='/users'>Click Here</a></p>
-
       </div>
     );
   }

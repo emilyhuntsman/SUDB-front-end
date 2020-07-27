@@ -175,7 +175,7 @@ code {
   margin-right: 10px;
   text-align: center;
   justify-content: center;
-  background-image: url("./components/bookcover.jpg");
+  background-color: #157A6E;
   background-size: cover;
   background-repeat: none;
   background-position: center;

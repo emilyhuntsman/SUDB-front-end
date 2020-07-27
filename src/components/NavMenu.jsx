@@ -32,9 +32,9 @@ export default class NavMenu extends Component {
                 <Link className="navLink" to="/list">My List</Link>
                 <Link className="navLink" to="/" onClick={() => this.props.handleLogout()}>Log Out</Link>
               </>
-            : <Link className="navLink" to="/login">
+            : <Link className="navLink" to="/login" onClick={() => this.props.toLogin()}>
               Log In
-        </Link>
+            </Link>
         }
       </div>
     );

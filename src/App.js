@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "./App.css";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./components/Home";
@@ -34,12 +34,36 @@ class App extends Component {
   };
 
   handleResults = (title) => {
-    this.setState({ bookSearch: title, currentPage: '/results'})
+    this.setState({ bookSearch: title, currentPage: '/results'});
   }
 
   resetRedirect = () => {
     this.setState({ currentPage: '/' });
+  }
+
+  toBlindDate = () => {
+    this.setState({ currentPage: "/date" });
+  }
+
+  toLogin = () => {
+    this.setState({ currentPage: "/login"});
+  }
+
+  addToList = (list,title) => {
+    const paramString = `${this.state.user}/${list}/${title}`
+    fetch(this.state.baseURL + "/users/" + paramString, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error({ Error: error }));
   };
+
+  handleLogout = () => {
+    this.setState({ user: null });
+  }
 
   handleSubmit = (event, username, password) => {
     event.preventDefault();
@@ -55,23 +79,8 @@ class App extends Component {
     })
       .then((res) => res.json())
       .catch((error) => console.error({ Error: error }));
+      this.setState({user: username, currentPage: "/"});
   };
-
-  addToList = (list,title) => {
-    const paramString = `${this.state.user}/${list}/${title}`
-    fetch(this.state.baseURL + "/users/" + paramString, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .catch((error) => console.error({ Error: error }));
-  };
-
-  toBlindDate = () => {
-    this.setState({ currentPage: "/date" })
-  }
 
   handleLogin = (username, password) => {
     let userString = `/${username}/${password}/`
@@ -92,16 +101,13 @@ class App extends Component {
       .catch((error) => console.error({ Error: error }));
   };
 
-  handleLogout = () => {
-    this.setState({ user: null });
-  }
-
 
   render() {
     return (
       <div className="container">
         <BrowserRouter>
           <Header
+            toLogin={() => this.toLogin()}
             user={this.state.user}
             handleLogout={() => this.handleLogout()} />
           <Switch>
@@ -111,8 +117,8 @@ class App extends Component {
               render={() => (
                 <Login
                   handleLogin={(username,password) => this.handleLogin(username,password)}
-                  redirect={this.state.redirect}
                   currentPage={this.state.currentPage}
+                  resetRedirect={this.resetRedirect}
                   baseURL={this.state.baseURL}
                   user={this.state.user}
                 />
@@ -123,6 +129,8 @@ class App extends Component {
               path="/users"
               render={() => (
                 <Registration
+                  currentPage={this.currentPage}
+                  resetRedirect={this.resetRedirect}
                   baseURL={this.state.baseURL}
                   handleSubmit={this.handleSubmit}
                   user={this.state.user}
