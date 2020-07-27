@@ -12,13 +12,21 @@ import Login from "./components/LogIn";
 import SearchResults from "./components/SearchResults";
 import About from "./components/About";
 
+
+let baseURL;
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://sudb-api.herokuapp.com/';
+}
+
 class App extends Component {
   state = {
     user: null,
     users: [],
     bookSearch: "",
     currentPage: "/",
-    baseURL: "http://localhost:3003"
+    baseURL: baseURL,
   };
 
   handleSearch = (title) => {
