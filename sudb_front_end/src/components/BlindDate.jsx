@@ -50,9 +50,9 @@ export default class BlindDate extends Component {
     render() {
         return (
             <div className ='blind-date'>
-                <h1>Blind Date with a Bestseller</h1>
+                <h1 className='bd-header'>Blind Date with a Bestseller</h1>
                 <div className="display-categories">
-                    <select value={this.state.listType}
+                    <select value={this.state.listType} className="bd-dropdown"
                             onChange={(e) => this.setState({listType: e.target.value})}>
                             {this.state.listOptions.map(option => (
                                 <option
@@ -65,6 +65,7 @@ export default class BlindDate extends Component {
                         <input
                             type='submit'
                             value='Reveal Options'
+                            className='bd-button'
                         />
                     </form>
                 </div>
