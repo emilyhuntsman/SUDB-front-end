@@ -385,7 +385,8 @@ a:Link {
 
 /* ASHTON EDITS */
 
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap');
+
 
 
 body {
@@ -401,6 +402,8 @@ body {
 .sideNav {
   background-color: transparent;
   border: none;
+  font-family:'Raleway', sans-serif;
+  font-weight: 600;
 }
 
 .sideNav a {
@@ -434,9 +437,11 @@ body {
   right: 0;
 }
 
-.scroll, .picks, .res-title {
+.scroll, .picks, .res-title, .bd-header {
   color: #157A6E;
-  font-family: 'Special Elite', cursive;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+
 }
 
 .scroll {
@@ -453,33 +458,40 @@ body {
   background-color: #77B28C;
   border-radius: 10px
 }
-
-.bookSearch, .bookSearchButton {
+.bookSearch {
+  margin-bottom: 5px;
+}
+.bookSearch, .bookSearchButton, .bd-dropdown, .bd-button {
   margin-right: 10px;
   padding: 2px;
   border: #77B28C solid;
   border-radius: 10px;
-  font-family: 'Special Elite', cursive;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
 }
 .result {
   border: 1px solid #77B28C;
+  border-radius: 10px;
   display: flex;
   padding: 5px;
   margin: 5px;
   background-color: #77B28C;
-  color: #D7D9D3
+  color: #D7D9D3;
+  font-family: 'Raleway', sans-serif;
+  font-size: 300;
 }
 
 .result-img {
   position: left;
   text-align: left;
-  padding-right: 50px;
-  
+  border-radius: 10px;
+  padding-right: 0px
 }
 
 .result-desc {
   position: right;
   align-items: top right;
+  padding-left: 50px;
   padding-top: 70px;
   text-align: left;
 }
