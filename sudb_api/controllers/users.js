@@ -25,6 +25,16 @@ users.get("/", (req, res) => {
   });
 });
 
+users.get("/:user", (req, res) => {
+  User.find({"username":req.param.user}, (err, foundUser) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    console.log("user ",foundUser);
+    res.status(200).json(foundUser);
+  });
+});
+
 users.delete("/:id", (req, res) => {
   User.findByIdAndRemove(req.params.id, (err, deletedUser) => {
     if (err) {
@@ -56,7 +66,26 @@ users.get("/login/:user/:pw", (req, res) => {
     res.status(200).json(foundUser);
   });
 });
-// users.post("/createUser", chatCtrl.createNewUser);
-// users.post("/confirmUser", chatCtrl.authenticate);
+
+users.put("/:user/:list/:title", (req, res) => {
+  if (req.params.list === "past") {
+    console.log("past");
+  }
+  if (req.params.list === "future") {
+    console.log("future");
+  }
+  // User.findOneAndUpdate({"username": req.params.user}
+  //   req.params.id,
+  //   req.body,
+  //   { new: true },
+  //   (err, updatedUser) => {
+  //     if (err) {
+  //       res.status(400).json({ error: err.message });
+  //     }
+  //     console.log("putting to ",updatedUser)
+  //     res.status(200).json(updatedUser);
+  //   }
+  // );
+});
 
 module.exports = users;
