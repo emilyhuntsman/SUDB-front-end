@@ -47,7 +47,7 @@ class Show extends Component {
                 <img alt="" src={this.state.imgUrl}/>
             </div>
             <div className="book-info">
-                <h2>{this.state.bookObj.title}</h2>
+                <h2 className="bi-header">{this.state.bookObj.title}</h2>
                 <h3>by {this.state.bookObj.authors}</h3>
                 <h4>{this.state.bookObj.categories} | {this.state.bookObj.pageCount} pages</h4>
                 <h4>average of {this.state.bookObj.ratingsCount} ratings: {this.state.bookObj.averageRating}/5</h4>

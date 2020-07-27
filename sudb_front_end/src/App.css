@@ -437,7 +437,7 @@ body {
   right: 0;
 }
 
-.scroll, .picks, .res-title, .bd-header {
+.scroll, .picks, .res-title, .bd-header, .bi-header {
   color: #157A6E;
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
@@ -469,7 +469,7 @@ body {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
 }
-.result {
+.result, .show-container {
   border: 1px solid #77B28C;
   border-radius: 10px;
   display: flex;
@@ -500,4 +500,13 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.show-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.cover img{
+  border-radius: 10px;
 }
