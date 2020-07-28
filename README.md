@@ -13,10 +13,10 @@ Welcome to Straight Up Dope Books! We share a passion for great books, and build
 
 ## Approach
 This was a group project in which we first determined a common interest and landed on books! More specifically "Straight Up Dope Books"! We then created a wireframe, as seen in the image below:
-![wireframe](/components/wireframe.png)
+![wireframe](/public/wireframe.png)
 
 From here we broke down the different aspects of the website into different components on a shared Trello Board and assigned to the group members based on competency and comfort level with technologies needed for that component. Our Trello board looked like this:
-![trello](/components/ProjectBreakdown.png)
+![trello](/public/ProjectBreakdown.png)
 
 After the breakdown our group developed our components dynamically around the other components in development and had daily meetings discussing merging code (via this repo), and other developmental aspects of the project. We hope you enjoy the results!
 
