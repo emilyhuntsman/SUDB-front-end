@@ -28,28 +28,30 @@ export default class Login extends Component {
       return <Redirect to={this.props.currentPath}/>
     }
     return (
-      <div>
+      <div className="login-container">
         <h1>Log In</h1>
         <form onSubmit={(event) => this.reactToLogin(event)}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username" className="login">Username</label><br />
           <input
             type="text"
+            className="login"
             id="username"
             value={this.state.username}
             onChange={this.handleChange}
             ref={(node) => (this.username = node)}
           />
-          <br />
-          <label htmlFor="password">Password</label>
+          <br /><br />
+          <label htmlFor="password" className="login">Password</label><br />
           <input
             type="password"
+            className="login"
             id="password"
             value={this.state.password}
             onChange={this.handleChange}
             ref={(node) => (this.password = node)}
           />
-          <br />
-          <input type="submit" />
+          <br /><br />
+          <input type="submit" className="login" />
         </form>
         <p> Not Signed up? <a href='/users'>Click Here</a></p>
 

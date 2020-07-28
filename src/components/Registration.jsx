@@ -27,28 +27,30 @@ export default class Registration extends Component {
 
   render() {
     return (
-      <div>
+      <div className="sign-up-container">
         <h1>Sign Up</h1>
         <form onSubmit={(event) => this.handleSubmit(event)}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username" className="su">Username</label><br />
           <input
             type="text"
             id="username"
+            className="su"
             value={this.state.username}
             onChange={this.handleChange}
             ref={(node) => (this.username = node)}
           />
-          <br />
-          <label htmlFor="password">Password</label>
+          <br /><br />
+          <label htmlFor="password" className="su">Password</label><br />
           <input
             type="password"
             id="password"
+            className="su"
             value={this.state.password}
             onChange={this.handleChange}
             ref={(node) => (this.password = node)}
           />
           <br />
-          <input type="submit" />
+          <input type="submit" className="su"/>
         </form>
       </div>
     );
