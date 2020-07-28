@@ -47,21 +47,22 @@ class Show extends Component {
                 <img alt="" src={this.state.imgUrl}/>
             </div>
             <div className="book-info">
-                <h2>{this.state.bookObj.title}</h2>
+                <h2 className="bi-header">{this.state.bookObj.title}</h2>
                 <h3>by {this.state.bookObj.authors}</h3>
                 <h4>{this.state.bookObj.categories} | {this.state.bookObj.pageCount} pages</h4>
                 <h4>average of {this.state.bookObj.ratingsCount} ratings: {this.state.bookObj.averageRating}/5</h4>
                 <div className="book-description">
                     <p>{this.state.bookObj.description}</p>
                 </div>
+                {(this.props.user) ? 
                 <div className="read-buttons">
-                    <button onClick={() => this.props.addBookPast(this.state.bookObj.title)}>read</button>
-                    <button onClick={() => this.props.addBookFuture(this.state.bookObj.title)}>to read</button>
-                </div>
+                    <button onClick={() => this.props.addToList("past",this.state.bookObj.title)}>Already Read</button>
+                    <button onClick={() => this.props.addToList("future",this.state.bookObj.title)}>Need To Read</button>
+                </div> :
+                <p>log in to add to add to your lists!</p>}
             </div>
         </div>
     )}
-
 }
     
 export default Show;

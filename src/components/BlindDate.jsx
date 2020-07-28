@@ -12,6 +12,7 @@ export default class BlindDate extends Component {
             key: '.json?api-key=',
             apiKey: 'AvrhDA0S3I6hhszKEo8ljVKVDAPUGLAy',
             searchURL: '',
+            hideBar: false,
         }
     }
 
@@ -34,7 +35,8 @@ export default class BlindDate extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.setState({
-            searchURL: this.state.baseURL + this.state.listBase + this.state.listType + this.state.key + this.state.apiKey
+            searchURL: this.state.baseURL + this.state.listBase + this.state.listType + this.state.key + this.state.apiKey, 
+            hideBar: true
         }, () => {
             fetch(this.state.searchURL)
             .then(response => {
@@ -45,14 +47,15 @@ export default class BlindDate extends Component {
             }),
             error => console.log(error))
         });
+        
     };
 
     render() {
         return (
             <div className ='blind-date'>
-                <h1>Blind Date with a Bestseller</h1>
+                <h1 className='bd-header'>Blind Date with a Bestseller</h1>
                 <div className="display-categories">
-                    <select value={this.state.listType}
+                    <select value={this.state.listType} className="bd-dropdown"
                             onChange={(e) => this.setState({listType: e.target.value})}>
                             {this.state.listOptions.map(option => (
                                 <option
@@ -65,6 +68,7 @@ export default class BlindDate extends Component {
                         <input
                             type='submit'
                             value='Reveal Options'
+                            className='bd-button'
                         />
                     </form>
                 </div>

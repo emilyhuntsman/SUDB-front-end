@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "./App.css";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./components/Home";
@@ -10,10 +10,16 @@ import Registration from "./components/Registration";
 import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
 import ls from 'local-storage'
+import SearchResults from "./components/SearchResults";
+import About from "./components/About";
 
 
-
-const baseURL = "http://localhost:3003";
+let baseURL;
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003';
+} else {
+  baseURL = 'https://sudb-api.herokuapp.com';
+}
 
 class App extends Component {
   state = {
@@ -24,22 +30,48 @@ class App extends Component {
     users: [],
     bookSearch: "",
     currentPage: "/",
-    futureBooks: [],
-    pastBooks: [],
+    baseURL: baseURL,
   };
 
   handleSearch = (title) => {
     this.setState({ bookSearch: title, currentPage: '/book' });
   };
 
+  handleResults = (title) => {
+    this.setState({ bookSearch: title, currentPage: '/results' });
+  }
+
   resetRedirect = () => {
     this.setState({ currentPage: '/' });
+  }
+
+  toBlindDate = () => {
+    this.setState({ currentPage: "/date" });
+  }
+
+  toLogin = () => {
+    this.setState({ currentPage: "/login" });
+  }
+
+  addToList = (list, title) => {
+    const paramString = `${this.state.user}/${list}/${title}`
+    fetch(this.state.baseURL + "/users/" + paramString, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error({ Error: error }));
   };
+
+  handleLogout = () => {
+    this.setState({ user: null });
+  }
 
   handleSubmit = (event, username, password) => {
     event.preventDefault();
-    console.log("submit ran for sign up");
-    fetch(baseURL + "/users", {
+    fetch(this.state.baseURL + "/users", {
       method: "POST",
       body: JSON.stringify({
         username: username,
@@ -51,6 +83,7 @@ class App extends Component {
     })
       .then((res) => res.json())
       .catch((error) => console.error({ Error: error }));
+    this.setState({ user: username, currentPage: "/" });
   };
 
   toBlindDate = () => {
@@ -199,6 +232,7 @@ class App extends Component {
       <div className="container">
         <BrowserRouter>
           <Header
+            toLogin={() => this.toLogin()}
             user={this.state.user}
             handleLogout={() => this.handleLogout()} />
           <Switch>
@@ -209,11 +243,12 @@ class App extends Component {
                 <Login
                   handleLoginChange={this.handleLoginChange}
                   handleLogin={(username, password) => this.handleLogin(username, password)}
-                  redirect={this.state.redirect}
-                  goTo={this.state.goTo}
-                  baseURL={baseURL}
                   username={this.state.username}
                   password={this.state.password}
+                  currentPage={this.state.currentPage}
+                  resetRedirect={this.resetRedirect}
+                  baseURL={this.state.baseURL}
+                  user={this.state.user}
                 />
               )}
             />
@@ -222,7 +257,9 @@ class App extends Component {
               path="/users"
               render={() => (
                 <Registration
-                  baseURL={baseURL}
+                  currentPage={this.currentPage}
+                  resetRedirect={this.resetRedirect}
+                  baseURL={this.state.baseURL}
                   handleSubmit={this.handleSubmit}
                   user={this.state.user}
                 />
@@ -234,9 +271,21 @@ class App extends Component {
               render={() => (
                 <Home
                   currentPage={this.state.currentPage}
-                  baseURL={baseURL}
+                  baseURL={this.state.baseURL}
+                  handleResults={(title) => this.handleResults(title)}
                   handleSearch={(title) => this.handleSearch(title)}
                   toBlindDate={() => this.toBlindDate}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/results/"
+              render={() => (
+                <SearchResults
+                  queryTerm={this.state.bookSearch}
+                  resetRedirect={() => this.resetRedirect()}
+                  handleSearch={(title) => this.handleSearch(title)}
                 />
               )}
             />
@@ -245,8 +294,9 @@ class App extends Component {
               path="/book/"
               render={() => (
                 <Show
+                  user={this.state.user}
                   bookSearch={this.state.bookSearch}
-                  resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)}
+                  resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)} addToList={(user, title) => this.addToList(user, title)}
                 />
               )}
             />
@@ -266,9 +316,18 @@ class App extends Component {
               path="/list/"
               render={() => (
                 <MyLists
-                  pastBooks={this.state.pastBooks}
-                  futureBooks={this.state.futureBooks} removeBookFuture={(book) => this.removeBookFuture(book)} removeBookPast={(book) => this.removeBookPast(book)} moveBookToFuture={(book) => this.moveBookToFuture(book)}
+                  user={this.state.user}
+                  baseURL={this.state.baseURL}
+                  addToList={(list, title) => this.addToList(list, title)}
+                  moveBookToFuture={(book) => this.moveBookToFuture(book)} getUserLists={() => this.getUserLists()}
                 />
+              )}
+            />
+            <Route
+              exact
+              path="/about/"
+              render={() => (
+                <About />
               )}
             />
           </Switch>

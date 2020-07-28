@@ -18,23 +18,24 @@ export default class SearchBar extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.handleSearch(this.state.bookTitle);
+        this.props.handleResults(this.state.bookTitle);
     };
     
     render() {
         return (
             <>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} className='search'>
                     <input
                         id='bookTitle'
                         type='text'
                         className='bookSearch'
                         value={this.state.bookTitle}
                         onChange={this.handleChange}
-                    />
+                    /> <br />
                     <input
                         type='submit'
-                        value='Find a Book'
+                        value=' Find a Book '
+                        className='bookSearchButton'
                     />
                 </form>
             </>
