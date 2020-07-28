@@ -427,7 +427,7 @@ body {
   right: 0;
 }
 
-.scroll, .picks, .res-title, .bd-header {
+.scroll, .picks, .res-title, .bd-header, .bi-header {
   color: #157A6E;
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
@@ -520,6 +520,10 @@ body {
 
 .about-title, .about-container h2 {
   text-decoration: underline;
-  color: #292F36
+  color: #292F36;
+  margin-top: 50px;
 }
 
+.cover img{
+  border-radius: 10px;
+}
