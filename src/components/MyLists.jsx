@@ -59,12 +59,12 @@ class MyLists extends Component {
     return (
         <div className="list-div">
             <div className="one-list">
-                <h2>To Read</h2>
+                <h2>Need To Read</h2>
                 {this.state.futureBooks.map(book => (
                     <div className="book-div"key={book}>
                         <p>{book}</p>
-                        <button onClick={() => this.removeFromList("future",book)}>x</button>
-                        <button onClick={() => this.moveBookToFuture(book)}>{"->"}</button>
+                        <button onClick={() => this.removeFromList("future",book)}>Delete</button>
+                        <button onClick={() => this.moveBookToFuture(book)}>Already Read</button>
                     </div>
                 ))}
             </div>
@@ -73,7 +73,7 @@ class MyLists extends Component {
                 {this.state.pastBooks.map(book => (
                     <div className="book-div"key={book}>
                         <p>{book}</p>
-                        <button onClick={() => this.removeFromList("past",book)}>x</button>
+                        <button onClick={() => this.removeFromList("past",book)}>Delete</button>
                 </div>
                 ))}
             </div>

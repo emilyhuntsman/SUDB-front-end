@@ -29,14 +29,20 @@ export default class About extends Component {
                 <ul>
                     <li>Refreshing the page after logging in loses log in information, and the user must repeat the log in process to access and modify their lists.</li>
                     <li>Responsive design not implemented.</li>
+                    <li>"Try Again" Button on Blind Date Component refreshes the page which in turn logs user out.</li>
+                    <li>Random Index on Blind Date Component doesn't reset between Category change, this sometimes won't render options correctly always.</li>
+                    <li>CSS code needs to be pruned for dryness.</li>
+                    <li>Redirect to login after sign-up not functional, nor redirect from successful login to home page.</li>
                 </ul>
                 <h2>Forward Thoughts</h2>
                 <ul>
                     <li>Fix bugs listed above.</li>
+                    <li>More sign-up information required in the future, in order to build out user experience via full account features, and email notifications/alerts.</li>
+                    <li>Edit footer to include social media links.</li>
+                    <li>Code needs pruning for dryness.</li>
                 </ul>
                 <h2>Credit Where Credit Is Due:</h2>
                 <ul>
-                    <li>Social Media Icons: <a href="www.flaticon.com/categories/social-media">www.flaticon.com/categories/social-media</a> (Pixel Perfect, Free Pix)</li>
                     <li>Google API: <a href="https://developers.google.com/books">https://developers.google.com/books</a></li>
                     <li>New York Times API: <a href ="https://developer.nytimes.com/docs/books-product/1/overview">https://developer.nytimes.com/docs/books-product/1/overview</a></li>
                 </ul>

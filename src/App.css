@@ -111,7 +111,7 @@ code {
 
 .picks {
   height: 400px;
-  width: 800px;
+  width: 1000px;
   margin-top: 20px;
   margin-bottom: 60px;
   display: flex;
@@ -129,7 +129,7 @@ code {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  width: 663px;
+  width: 700px;
 }
 
 .footer {
@@ -294,7 +294,6 @@ code {
   display: inline-block;
 }
 
-
 .ReactModal__Content {
   height: 450px;
   width: 500px;
@@ -448,10 +447,12 @@ body {
   background-color: #77B28C;
   border-radius: 10px
 }
+
 .bookSearch {
   margin-bottom: 5px;
 }
-.bookSearch, .bookSearchButton, .bd-dropdown, .bd-button, .read-buttons button, .close {
+
+.bookSearch, .bookSearchButton, .bd-dropdown, .bd-button, .read-buttons button, .close, .login, .su {
   margin-right: 10px;
   padding: 5px;
   border: #77B28C solid;
@@ -500,13 +501,12 @@ body {
   border-radius: 10px;
 }
 
-.about-container, .ReactModal__Content, .ReactModal__Body--open, .medium-info
-{
+.about-container, .ReactModal__Content, .ReactModal__Body--open, .medium-info, .list-div, .login-container, .sign-up-container {
   border: 1px solid #77B28C;
   border-radius: 10px;
   background-color: #77B28C;
   padding: 10px;
-  color: #D7D9D3;
+  color: #e8ebe4;
   font-family: 'Raleway', sans-serif;
   font-size: 300;
   text-align: center;
