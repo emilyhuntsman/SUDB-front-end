@@ -9,6 +9,8 @@ import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
 import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
+import ls from 'local-storage'
+
 
 
 const baseURL = "http://localhost:3003";
@@ -100,6 +102,14 @@ class App extends Component {
     });
   };
 
+  componentDidMount() {
+    if (localStorage.getItem('user')) {
+      this.setState({
+        user: localStorage.getItem("user")
+      })
+    }
+  }
+
   handleLogin = (username, password) => {
     console.log('Log in function ran', this.state)
     fetch(baseURL + '/users/login', {
@@ -119,6 +129,8 @@ class App extends Component {
           this.setState({
             user: data.username,
           })
+          ls.set('user', data.username)
+          ls.set('token', data.securityToken)
         }
       })
       .catch((error) => console.error({ Error: error }));
@@ -130,6 +142,7 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({ user: null });
+    localStorage.clear();
   }
 
 
