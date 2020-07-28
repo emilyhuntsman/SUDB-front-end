@@ -121,27 +121,6 @@ class App extends Component {
           })
         }
       })
-      // console.log('this is Username', resJson.username)
-      // console.log('this is Auth', resJson.auth)
-
-      // console.log('this is login', res)
-      // if (resJson !== null) {
-      //   this.setState({
-      //     user: resJson.username,
-      //     auth: resJson.auth
-      //     //creating token with JWT using data from the user. look up local storage and saving token to persist. 
-      //   });
-      // }
-
-      // .then((resJson) => {
-      //   console.log(resJson)
-      //   if (resJson !== null) {
-      //     this.setState({
-      //       user: resJson.username,
-      //       //creating token with JWT using data from the user. look up local storage and saving token to persist. 
-      //     });
-      //   }
-      // })
       .catch((error) => console.error({ Error: error }));
     this.setState({
       username: "",
