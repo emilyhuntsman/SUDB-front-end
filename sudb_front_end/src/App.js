@@ -112,21 +112,27 @@ class App extends Component {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => {
-        let resJson = res.json()
-        console.log(resJson)
-        // console.log('this is Username', resJson.username)
-        // console.log('this is Auth', resJson.auth)
-
-        // console.log('this is login', res)
-        // if (resJson !== null) {
-        //   this.setState({
-        //     user: resJson.username,
-        //     auth: resJson.auth
-        //     //creating token with JWT using data from the user. look up local storage and saving token to persist. 
-        //   });
-        // }
+      .then((res) => res.json())
+      .then(data => {
+        console.log('got back', data)
+        if (data !== null) {
+          this.setState({
+            user: data.username,
+          })
+        }
       })
+      // console.log('this is Username', resJson.username)
+      // console.log('this is Auth', resJson.auth)
+
+      // console.log('this is login', res)
+      // if (resJson !== null) {
+      //   this.setState({
+      //     user: resJson.username,
+      //     auth: resJson.auth
+      //     //creating token with JWT using data from the user. look up local storage and saving token to persist. 
+      //   });
+      // }
+
       // .then((resJson) => {
       //   console.log(resJson)
       //   if (resJson !== null) {

@@ -28,6 +28,7 @@ users.post("/login", (req, res) => {
       console.log(user);
       res.status(200).json({
         username: user.username,
+        securityToken: securityToken
       });
     } else {
       res.status(401).json({ message: "username/password not found" })
