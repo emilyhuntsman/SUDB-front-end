@@ -518,7 +518,8 @@ body {
 
 .about-title, .about-container h2 {
   text-decoration: underline;
-  color: #292F36
+  color: #292F36;
+  margin-top: 50px;
 }
 
 .cover img{
