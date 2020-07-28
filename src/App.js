@@ -9,6 +9,7 @@ import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
 import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
+import ls from 'local-storage'
 import SearchResults from "./components/SearchResults";
 import About from "./components/About";
 
@@ -22,7 +23,10 @@ if (process.env.NODE_ENV === 'development') {
 
 class App extends Component {
   state = {
+    auth: false,
     user: null,
+    username: '',
+    password: '',
     users: [],
     bookSearch: "",
     currentPage: "/",
@@ -34,7 +38,7 @@ class App extends Component {
   };
 
   handleResults = (title) => {
-    this.setState({ bookSearch: title, currentPage: '/results'});
+    this.setState({ bookSearch: title, currentPage: '/results' });
   }
 
   resetRedirect = () => {
@@ -46,10 +50,10 @@ class App extends Component {
   }
 
   toLogin = () => {
-    this.setState({ currentPage: "/login"});
+    this.setState({ currentPage: "/login" });
   }
 
-  addToList = (list,title) => {
+  addToList = (list, title) => {
     const paramString = `${this.state.user}/${list}/${title}`
     fetch(this.state.baseURL + "/users/" + paramString, {
       method: "PUT",
@@ -79,28 +83,149 @@ class App extends Component {
     })
       .then((res) => res.json())
       .catch((error) => console.error({ Error: error }));
-      this.setState({user: username, currentPage: "/"});
+    this.setState({ user: username, currentPage: "/" });
   };
 
+  toBlindDate = () => {
+    this.setState({ currentPage: "/date" })
+  }
+
+  addBookFuture = (book) => {
+    this.state.futureBooks.push(book);
+  }
+
+  removeBookFuture = (book) => {
+    let index = -1;
+    for (let i = 0; i < this.state.futureBooks.length; i++) {
+      if (book === this.state.futureBooks[i]) {
+        index = i;
+      }
+    }
+    if (index !== -1) {
+      this.state.futureBooks.splice(index, 1);
+    }
+    this.setState({});
+  }
+
+  addBookPast = (book) => {
+    this.state.pastBooks.push(book);
+  }
+
+  removeBookPast = (book) => {
+    let index = -1;
+    for (let i = 0; i < this.state.pastBooks.length; i++) {
+      if (book === this.state.pastBooks[i]) {
+        index = i;
+      }
+    }
+    if (index !== -1) {
+      this.state.pastBooks.splice(index, 1);
+    }
+    this.setState({})
+  }
+
+  moveBookToFuture = (book) => {
+    this.removeBookFuture(book);
+    this.addBookPast(book);
+  }
+
+  handleLoginChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value,
+    });
+  };
+
+  componentDidMount() {
+    if (localStorage.getItem('user')) {
+      this.setState({
+        user: localStorage.getItem("user")
+      })
+    }
+  }
+
   handleLogin = (username, password) => {
-    let userString = `/${username}/${password}/`
-    fetch(this.state.baseURL + "/users/login" + userString, {
-      method: "GET",
+    console.log('Log in function ran', this.state)
+    fetch(baseURL + '/users/login', {
+      method: "POST",
+      body: JSON.stringify({
+        user: this.state.username,
+        password: this.state.password
+      }),
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((resJson) => {
-        if (resJson !== null) {
+      .then(data => {
+        console.log('got back', data)
+        if (data !== null) {
           this.setState({
-            user: resJson.username
-          });
+            user: data.username,
+          })
+          ls.set('user', data.username)
+          ls.set('token', data.securityToken)
         }
       })
       .catch((error) => console.error({ Error: error }));
+    this.setState({
+      username: "",
+      password: "",
+    });
   };
 
+  handleLogout = () => {
+    this.setState({ user: null });
+    localStorage.clear();
+  }
+
+
+  // for users in API post auth -----------------
+
+  // componentDidMount(){
+  //   this.getUsers();
+  // }
+
+  // handleAddUser = (user) => {
+  //   const copyUsers = [...this.state.users];
+  //   copyUsers.unshift(user);
+  //   this.setState({
+  //     users: copyUsers,
+  //     username: "",
+  //     password: "",
+  //     read: [],
+  //     toRead: [],
+  //     genres: [],
+  //   });
+  // };
+
+  // getUsers = () => {
+  //   fetch(baseURL + "/users")
+  //     .then(
+  //       (data) => {
+  //         return data.json();
+  //       },
+  //       (err) => console.log(err)
+  //     )
+  //     .then(
+  //       (parsedData) => this.setState({ users: parsedData }),
+  //       (err) => console.log(err)
+  //     );
+  // };
+
+  // deleteUser = (id) => {
+  //   fetch(baseURL + "/users/" + id, {
+  //     method: "DELETE",
+  //     body: JSON.stringify({}),
+  //     headers: {
+  //         'Content-Type': 'application/json'
+  //     }
+  //     }).then(() => {
+  //       this.componentDidMount();
+  //     })
+  //     .catch((error) => console.error({ Error: error }));
+  // };
+
+  // end of user section ----------------------
 
   render() {
     return (
@@ -116,7 +241,10 @@ class App extends Component {
               path="/login"
               render={() => (
                 <Login
-                  handleLogin={(username,password) => this.handleLogin(username,password)}
+                  handleLoginChange={this.handleLoginChange}
+                  handleLogin={(username, password) => this.handleLogin(username, password)}
+                  username={this.state.username}
+                  password={this.state.password}
                   currentPage={this.state.currentPage}
                   resetRedirect={this.resetRedirect}
                   baseURL={this.state.baseURL}
@@ -168,7 +296,7 @@ class App extends Component {
                 <Show
                   user={this.state.user}
                   bookSearch={this.state.bookSearch}
-                  resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)} addToList={(user,title) => this.addToList(user,title)}
+                  resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)} addToList={(user, title) => this.addToList(user, title)}
                 />
               )}
             />
@@ -190,7 +318,7 @@ class App extends Component {
                 <MyLists
                   user={this.state.user}
                   baseURL={this.state.baseURL}
-                  addToList={(list,title) => this.addToList(list,title)}
+                  addToList={(list, title) => this.addToList(list, title)}
                   moveBookToFuture={(book) => this.moveBookToFuture(book)} getUserLists={() => this.getUserLists()}
                 />
               )}

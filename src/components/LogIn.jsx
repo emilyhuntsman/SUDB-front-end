@@ -2,26 +2,14 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
-    state = {
-      username: "",
-      password: "",
-      loginErrors: "",
-    };
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value,
-    });
+  state = {
+    loginErrors: "",
   };
 
   reactToLogin = (event) => {
     event.preventDefault();
     this.props.resetRedirect();
-    this.props.handleLogin(this.state.username,this.state.password);
-    this.setState({
-      username: "",
-      password: "",
-    });
+    this.props.handleLogin(this.props.username, this.props.password);
   }
 
   render() {
@@ -37,8 +25,8 @@ export default class Login extends Component {
             type="text"
             className="login"
             id="username"
-            value={this.state.username}
-            onChange={this.handleChange}
+            value={this.props.username}
+            onChange={this.props.handleLoginChange}
             ref={(node) => (this.username = node)}
           />
           <br /><br />
@@ -47,8 +35,8 @@ export default class Login extends Component {
             type="password"
             className="login"
             id="password"
-            value={this.state.password}
-            onChange={this.handleChange}
+            value={this.props.password}
+            onChange={this.props.handleLoginChange}
             ref={(node) => (this.password = node)}
           />
           <br /><br />
