@@ -9,7 +9,6 @@ import BlindDate from "./components/BlindDate";
 import Registration from "./components/Registration";
 import MyLists from "./components/MyLists";
 import Login from "./components/LogIn";
-import ls from 'local-storage'
 import SearchResults from "./components/SearchResults";
 import About from "./components/About";
 
@@ -65,10 +64,6 @@ class App extends Component {
       .catch((error) => console.error({ Error: error }));
   };
 
-  handleLogout = () => {
-    this.setState({ user: null });
-  }
-
   handleSubmit = (event, username, password) => {
     event.preventDefault();
     fetch(this.state.baseURL + "/users", {
@@ -90,45 +85,6 @@ class App extends Component {
     this.setState({ currentPage: "/date" })
   }
 
-  addBookFuture = (book) => {
-    this.state.futureBooks.push(book);
-  }
-
-  removeBookFuture = (book) => {
-    let index = -1;
-    for (let i = 0; i < this.state.futureBooks.length; i++) {
-      if (book === this.state.futureBooks[i]) {
-        index = i;
-      }
-    }
-    if (index !== -1) {
-      this.state.futureBooks.splice(index, 1);
-    }
-    this.setState({});
-  }
-
-  addBookPast = (book) => {
-    this.state.pastBooks.push(book);
-  }
-
-  removeBookPast = (book) => {
-    let index = -1;
-    for (let i = 0; i < this.state.pastBooks.length; i++) {
-      if (book === this.state.pastBooks[i]) {
-        index = i;
-      }
-    }
-    if (index !== -1) {
-      this.state.pastBooks.splice(index, 1);
-    }
-    this.setState({})
-  }
-
-  moveBookToFuture = (book) => {
-    this.removeBookFuture(book);
-    this.addBookPast(book);
-  }
-
   handleLoginChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value,
@@ -136,15 +92,15 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.getItem('user')) {
+    if (localStorage.getItem("user")) {
       this.setState({
         user: localStorage.getItem("user")
       })
     }
   }
 
+
   handleLogin = (username, password) => {
-    console.log('Log in function ran', this.state)
     fetch(baseURL + '/users/login', {
       method: "POST",
       body: JSON.stringify({
@@ -157,13 +113,12 @@ class App extends Component {
     })
       .then((res) => res.json())
       .then(data => {
-        console.log('got back', data)
         if (data !== null) {
           this.setState({
             user: data.username,
           })
-          ls.set('user', data.username)
-          ls.set('token', data.securityToken)
+          localStorage.setItem('user', data.username)
+          localStorage.setItem('token', data.securityToken)
         }
       })
       .catch((error) => console.error({ Error: error }));
@@ -178,54 +133,6 @@ class App extends Component {
     localStorage.clear();
   }
 
-
-  // for users in API post auth -----------------
-
-  // componentDidMount(){
-  //   this.getUsers();
-  // }
-
-  // handleAddUser = (user) => {
-  //   const copyUsers = [...this.state.users];
-  //   copyUsers.unshift(user);
-  //   this.setState({
-  //     users: copyUsers,
-  //     username: "",
-  //     password: "",
-  //     read: [],
-  //     toRead: [],
-  //     genres: [],
-  //   });
-  // };
-
-  // getUsers = () => {
-  //   fetch(baseURL + "/users")
-  //     .then(
-  //       (data) => {
-  //         return data.json();
-  //       },
-  //       (err) => console.log(err)
-  //     )
-  //     .then(
-  //       (parsedData) => this.setState({ users: parsedData }),
-  //       (err) => console.log(err)
-  //     );
-  // };
-
-  // deleteUser = (id) => {
-  //   fetch(baseURL + "/users/" + id, {
-  //     method: "DELETE",
-  //     body: JSON.stringify({}),
-  //     headers: {
-  //         'Content-Type': 'application/json'
-  //     }
-  //     }).then(() => {
-  //       this.componentDidMount();
-  //     })
-  //     .catch((error) => console.error({ Error: error }));
-  // };
-
-  // end of user section ----------------------
 
   render() {
     return (
