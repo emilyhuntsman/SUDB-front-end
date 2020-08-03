@@ -64,7 +64,8 @@ class MyLists extends Component {
                     <div className="book-div"key={book}>
                         <p>{book}</p>
                         <button onClick={() => this.removeFromList("future",book)}>Delete</button>
-                        <button onClick={() => this.moveBookToFuture(book)}>Already Read</button>
+                        {(!this.state.pastBooks.includes(book))?
+                        <button onClick={() => this.moveBookToFuture(book)}>Already Read</button> : ""}
                     </div>
                 ))}
             </div>

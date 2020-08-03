@@ -43,7 +43,7 @@ export default class BlindDate extends Component {
                 return response.json()
             })
             .then(json => this.setState({
-                books: json,
+                books: json
             }),
             error => console.log(error))
         });

@@ -202,6 +202,7 @@ class App extends Component {
               render={() => (
                 <Show
                   user={this.state.user}
+                  baseURL={this.state.baseURL}
                   bookSearch={this.state.bookSearch}
                   resetRedirect={() => this.resetRedirect()} addBookFuture={(book) => this.addBookFuture(book)} addBookPast={(book) => this.addBookPast(book)} addToList={(user, title) => this.addToList(user, title)}
                 />

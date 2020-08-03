@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 const GOOGLE_API_KEY = process.env.REACT_APP_API_KEY_GOOGLE;
 
@@ -13,12 +13,15 @@ class Show extends Component {
         bookTitle: this.props.bookSearch,
         searchURL: '',
         bookObj: {},
+        futureBooks: [],
+        pastBooks: [],
     }
 
     componentDidMount(){
         this.props.resetRedirect();
         if(this.props.bookSearch !== ""){
             this.getBook();
+            this.getUserLists();
         }
     }
 
@@ -35,6 +38,23 @@ class Show extends Component {
             }),
             error => console.log(error))
         });
+    }
+
+    getUserLists = () => {
+        fetch(this.props.baseURL + `/users/${this.props.user}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            })
+            .then((res) => res.json())
+            .then((resJson) => {
+                this.setState({
+                    futureBooks: resJson[0].toread,
+                    pastBooks: resJson[0].read
+                })
+            })
+            .catch((error) => console.error({ Error: error }));
     }
 
     render() {
@@ -56,8 +76,12 @@ class Show extends Component {
                 </div>
                 {(this.props.user) ? 
                 <div className="read-buttons">
-                    <button onClick={() => this.props.addToList("past",this.state.bookObj.title)}>Already Read</button>
-                    <button onClick={() => this.props.addToList("future",this.state.bookObj.title)}>Need To Read</button>
+                    {((!this.state.pastBooks.includes(this.state.bookObj.title))&&(!this.state.futureBooks.includes(this.state.bookObj.title)))?
+                    <>
+                        <button onClick={() => this.props.addToList("past",this.state.bookObj.title)}>Already Read</button> 
+                        <button onClick={() => this.props.addToList("future",this.state.bookObj.title)}>Need To Read</button>
+                    </> : 
+                    <Link to="/list"><p>this book is already in one of your lists!</p></Link>}
                 </div> :
                 <p>log in to add to add to your lists!</p>}
             </div>

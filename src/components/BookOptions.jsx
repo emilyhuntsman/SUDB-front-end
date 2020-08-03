@@ -77,7 +77,7 @@ export default class BookOptions extends Component {
                         isOpen={this.state.showModal}
                         contentLabel="Book Modal" 
                         centered> 
-                        <button onClick={() => this.closeModal()} className='close'>close</button>
+                        <button onClick={() => this.closeModal()} className='close'>X</button>
                         <div className="medium-info">
                             <img alt="" src={this.state.imgUrl} className="modal-img"/>
                             <h2>{this.state.bookObj.title}</h2>

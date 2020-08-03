@@ -96,7 +96,7 @@ code {
 }
 
 .bookSearch {
-  width: 300px;
+  width: 230px;
 }
 
 .footer {
@@ -124,12 +124,16 @@ code {
   margin-top: 0px;
 }
 
+.picks h3, .picks h1 {
+  color: #157A6E;
+}
+
 .book-display {
   padding-bottom: 20px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  width: 700px;
+  width: 660px;
 }
 
 .footer {
@@ -159,7 +163,7 @@ code {
 
 .book img {
   height: 230px;
-  padding: 7px;
+  padding: 3px;
 }
 
 .book-option {
@@ -176,7 +180,7 @@ code {
   background-size: cover;
   background-repeat: none;
   background-position: center;
-  color: #f2bf33;
+  color: #fff;
   border-radius: 20px;
 }
 
@@ -260,7 +264,7 @@ code {
 }
 
 .medium-info {
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -295,7 +299,7 @@ code {
 }
 
 .ReactModal__Content {
-  height: 450px;
+  height: 500px;
   width: 500px;
   top: 207px !important;
   background-color: #fff;
@@ -379,14 +383,18 @@ a:Link {
 }
 
 body {
-  background-color: #D7D9D3
+  background-color: #fff
 }
 
 #menuSideNav {
   background-color: transparent;
-  border: none;
-
+  background-color: #232323;
 }
+
+#menuSideNav a, #menuSideNav button {
+  color: white;
+}
+
 
 .sideNav {
   background-color: transparent;
@@ -396,7 +404,6 @@ body {
 }
 
 .sideNav a {
-  color: #157A6E;
   text-decoration: none;
   display: block;
   transition: 0.3s;
@@ -419,7 +426,6 @@ body {
   position: absolute;
   right: 0;
   margin-right: 25px;
-  /* margin: 5% 3%; */
   font-size: 31px;
   color: #292F36;
   top: 1;
@@ -427,7 +433,7 @@ body {
 }
 
 .scroll, .picks, .res-title, .bd-header, .bi-header {
-  color: #157A6E;
+  color: #fff;
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
 
@@ -454,12 +460,19 @@ body {
 
 .bookSearch, .bookSearchButton, .bd-dropdown, .bd-button, .read-buttons button, .close, .login, .su {
   margin-right: 10px;
-  padding: 5px;
-  border: #77B28C solid;
-  border-radius: 10px;
+  padding: 3px;
+  border: darkgrey solid .05px;
+  border-radius: 3px; 
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
 }
+
+.close {
+  transform: translate(-240px,0);
+  background: transparent;
+  border: none;
+}
+
 .result, .show-container {
   border: 1px solid #77B28C;
   border-radius: 10px;
@@ -467,7 +480,7 @@ body {
   padding: 5px;
   margin: 5px;
   background-color: #77B28C;
-  color: #D7D9D3;
+  color: #fff;
   font-family: 'Raleway', sans-serif;
   font-size: 300;
 }
@@ -501,16 +514,24 @@ body {
   border-radius: 10px;
 }
 
+.modal-img {
+  margin-top: 30px;
+}
+
 .about-container, .ReactModal__Content, .ReactModal__Body--open, .medium-info, .list-div, .login-container, .sign-up-container {
   border: 1px solid #77B28C;
   border-radius: 10px;
   background-color: #77B28C;
   padding: 10px;
-  color: #e8ebe4;
+  color: #fff;
   font-family: 'Raleway', sans-serif;
   font-size: 300;
   text-align: center;
   list-style-position: inside;
+}
+
+.medium-info {
+  padding-bottom: 25px;
 }
 
 .about-img {
