@@ -541,6 +541,7 @@ body {
 .sign-up-container {
   height: 230px;
   width: 200px;
+  margin-top: 40px;
 }
 
 .medium-info {
