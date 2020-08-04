@@ -59,7 +59,7 @@ export default class Registration extends Component {
             onChange={this.handleChange}
             ref={(node) => (this.password = node)}
           />
-          <br />
+          <br /><br />
           <input type="submit" className="su"/>
         </form>
       </div>
