@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router-dom';
 
 export default class Registration extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ export default class Registration extends Component {
       username: "",
       password: "",
       loginErrors: "",
+      goHome: false,
     };
   }
 
@@ -22,12 +24,20 @@ export default class Registration extends Component {
     this.setState({
       username: "",
       password: "",
+      goHome: true,
     });
   };
+
+  doRedirect = () => {
+    if (this.state.goHome) {
+      return <Redirect to="/"/>
+    }
+  }
 
   render() {
     return (
       <div className="sign-up-container">
+        {this.doRedirect()}
         <h1>Sign Up</h1>
         <form onSubmit={(event) => this.handleSubmit(event)}>
           <label htmlFor="username" className="su">Username</label><br />

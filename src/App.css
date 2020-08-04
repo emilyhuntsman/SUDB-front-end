@@ -294,6 +294,10 @@ code {
   border-radius: 2.5px;
 }
 
+.registration-div {
+  transform: translate(0,17px);
+}
+
 .inline-button {
   display: inline-block;
 }
@@ -340,6 +344,7 @@ code {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 40px;
 }
 
 .one-list {
@@ -531,6 +536,11 @@ body {
   font-size: 300;
   text-align: center;
   list-style-position: inside;
+}
+
+.sign-up-container {
+  height: 230px;
+  width: 200px;
 }
 
 .medium-info {
